@@ -1,30 +1,85 @@
 let currentImageIndex = 0;
-let videos = [];
 let currentSong;
 let songs = {
 philharmonic: null,
 mark: null,
 shuzin: null
 };
+
+let files = [{
+    name: "תמונה",
+    description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
+    filePath: "images/1.jpg",
+    real: null
+},{
+  name: "תמונה",
+  description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
+  filePath: "images/paskol.png",
+  real: null
+}, {
+  name: "סרטון הפעם",
+  description: "זה הסרטון הכי הכי",
+  filePath: "videos/1.mp4",
+  real: null
+}
+]
+
 let soundVolume = 0.5;
 let canvas;
 let volumeSlider;
 let currentlyPlaying = '';
 let fft;
 
-function preload() {
+function showMusicText() {
+  const descriptionDiv = document.getElementById('songNameDiv');
+  const plusDiv = document.getElementById('plusDiv');
+  if (currentSong && currentSong.isPlaying()) {
+    text = currentlyPlaying;
+    descriptionDiv.innerHTML = text;
+    plusDiv.innerHTML = "+";
+  
+  }else {
+    descriptionDiv.innerHTML = "";
+    plusDiv.innerHTML = "";
+  }
+}
 
-// get all video files names in the videos folder
-files = ['1', '2']
-files.forEach((file, i) => {
-    // Do whatever you want to do with the file
-    let vid = createVideo(`videos/${file}.mp4`);
+function showImageDescription() {
+  text =  files[currentImageIndex].description;
+  const descriptionDiv = document.getElementById('descriptionDiv');
+  descriptionDiv.innerHTML = text;
+  text = files[currentImageIndex].name;
+  const imageDiv = document.getElementById('videoNameDiv');
+  imageDiv.innerHTML = text;
+
+}
+
+function loadVideo(index) {
+    let vid = createVideo(files[index].filePath);
     vid.volume(0); // Mute the video's own audio
     vid.hide(); // Hide the default HTML video player
     vid.loop(); // Make the video loop
-    jsonVid = { video: vid, name: file };
-    videos.push(jsonVid);
-    });
+    files[index].real = vid;
+}
+
+function loadSimpleImage(index) {
+    let img = loadImage(files[index].filePath);
+    files[index].real = img;
+}
+
+function loadFile(index) {
+    if (files[index].filePath.includes(".mp4")) {
+        loadVideo(index);
+    } else {
+        loadSimpleImage(index);
+    }
+}
+
+function preload() {
+// get all video files names in the videos folder
+files.forEach((file, i) => {
+    loadFile(i);
+});
 
 soundFormats('mp3');
 songs["shuzin"] = loadSound("sound/Shuzin.mp3");
@@ -35,6 +90,7 @@ songs["philharmonic"] = loadSound("sound/Israel Philharmonic Orchestra.mp3");
 
 function setup() {
     // Create canvas that fills the container
+    frameRate(30);
     const mainContainer = document.getElementById('main-container');
     const w = window.innerWidth;
     const h = window.innerHeight;
@@ -45,56 +101,38 @@ function setup() {
     fft = new p5.FFT(0.8, 1024);  
 
     volumeSlider = select('#volume');
-}        
 
-function setupControls(canvasX, canvasY) {
-    // // Left arrow button
-    // let prevButton = createButton('←');
-    // prevButton.position(canvasX - 90, canvasY + height/2);
-    // prevButton.mousePressed(previousImage);
-    // prevButton.class('arrow-button');
-    // styleArrowButton(prevButton);
-    
-    // // Right arrow button
-    // let nextButton = createButton('→');
-    // nextButton.position(canvasX + width + 65, canvasY +height/2);
-    // nextButton.mousePressed(nextImage);
-    // nextButton.class('arrow-button');
-    // styleArrowButton(nextButton);
-    
-    // Volume slider
-    // volumeSlider = createSlider(0, 1, soundVolume, 0.01);
-    // volumeSlider.position(canvasX + width/2 - 75, height + canvasY + 20);
-    // volumeSlider.style('width', '150px');
-    
-    // Volume label
-    // let volumeLabel = createDiv('Volume');
-    // volumeLabel.position(canvasX+ width/2 - 75, height + canvasY  +40);
-    // volumeLabel.style('color', 'white');
-    // volumeLabel.style('font-family', 'Arial');
-    // volumeLabel.style('text-align', 'center');
-    // volumeLabel.style('width', '150px');
-}
+    showImageDescription();
+}        
   
-  function nextImage() {
-    currentImageIndex = (currentImageIndex + 1) % videos.length;
-    vid = videos[currentImageIndex].video;
-    // vid.loop();
+function nextImage() {
+    currentImageIndex = (currentImageIndex + 1) % files.length;
+    showImageDescription();
   }
   
   function previousImage() {
-    currentImageIndex = (currentImageIndex - 1 + videos.length) % videos.length;
+    currentImageIndex = (currentImageIndex - 1 + files.length) % files.length;
+    showImageDescription();
+  }
+
+  function getFileToDisplay() {
+    file = files[currentImageIndex];
+    if (file.filePath.includes(".mp4")) {
+        return file.real;
+    } else {
+        return file.real;
+    }
   }
 
   function draw() {
     background(255);
     
-    let img = videos[currentImageIndex].video;
+    let img = getFileToDisplay();
     let newWidth = width;
     let newHeight = height;
-    let imageX = img.position().x; // doesnt matter
-    let imageY = img.position().y; // doesnt matter
-    
+    let imageX = (width - newWidth) / 2;
+    let imageY = (height - newHeight - 160) / 2;
+      
     // ניתוח הספקטרום של המוזיקה
     let spectrum = fft.analyze();
     let bassEnergy = fft.getEnergy("bass");
@@ -104,8 +142,7 @@ function setupControls(canvasX, canvasY) {
     if (!currentSong || !currentSong.isPlaying()) {
       // show regular video if no music is playing
       
-      let vid = img.get();
-      image(vid, imageX, imageY, newWidth, newHeight); // redraws the video frame by frame in p5
+      image(img, imageX, imageY, newWidth, newHeight); // redraws the video frame by frame in p5
       loadPixels();
     
     } else if (currentlyPlaying === 'shuzin') {
@@ -343,6 +380,7 @@ function setupControls(canvasX, canvasY) {
   // [Rest of your existing functions stay the same]
   
   function toggleMusic(type) {
+    
     if (currentSong && currentSong.isPlaying()) {
       currentSong.stop();
       if (currentlyPlaying === type) {
@@ -358,6 +396,7 @@ function setupControls(canvasX, canvasY) {
       currentlyPlaying = type;
       fft.setInput(currentSong);
     }
+    showMusicText();
   }
   
   
