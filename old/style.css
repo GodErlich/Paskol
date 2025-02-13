@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'Narkis Block';
+  src: url('fonts/narkis-block.ttf') format('truetype'),
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+  }
+
+  #waveCanvas {
+    position: fixed !important;  /* Override default canvas positioning */
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    pointer-events: none;
+    z-index: 2;  /* Make sure waves are on top */
+}
+  canvas {
+    display: block;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    z-index: -1;
+  }
+
+
+  .content {
+      position: relative;
+      z-index: 2;
+      color: #ffffff;
+      background-color: transparent;
+  }
+
+  .middle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+  }
+
+  .mainFont {
+      font-family: 'Narkis Block', sans-serif;
+  }

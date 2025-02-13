@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>פסטיבל פסקול</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.1/addons/p5.sound.min.js"></script>    
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="icon">
+            <img src="images/paskol.png" alt="icon">
+        </div>
+        <div class="tab">אודות הפסטיבל</div>
+        <div class="tab">האמנים והמתחמים</div>
+        <div class="tab">לרכישת הכרטיסים</div>
+    </header>
+    <div class="content-wrapper">
+
+        <div class="canvas-container" id="canvas-container">
+            <!-- P5.js canvas will be inserted here -->
+        </div>
+        
+        <div class="main-container" id="main-container">
+            <div class="center">
+                <div class="description">
+                    טקסט כלשהו על הפסטיבל שהוא ארוך ומסודר ומסביר מה זה פסטיבל פסקול ומה יש בו ולמה כדאי לבוא
+                </div>
+                <div class="special">
+                    <div class="arrow-button" onclick="nextImage()">❮</div>
+                    <div class="slider-container">
+                        <label class="volume" for="volume">Volume</label>
+                        <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+                    </div>
+                </div>    
+            </div>
+            <div class="overVideo">
+                <div class="songName">שיר כלשהו</div>
+                <div class="plus">+</div>
+                <div class="videoName">שם וידאו</div>
+            </div>
+        </div>
+        
+        <div class="buttons">
+            <button onclick="toggleMusic('philharmonic')">הפילהרמונית</button>
+            <button onclick="toggleMusic('mark')">מארק אליהו</button>
+            <button onclick="toggleMusic('shuzin')">שוזין</button>
+        </div>
+    </div>
+</div>
+
+    <script src="script.js" > </script>
+</body>
+</html>
