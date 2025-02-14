@@ -32,13 +32,13 @@
     /* Keep your existing header styles */
     position: relative;
     z-index: 2;
-    height: 20vh;
+    height: 15vh;
 }
 
 .content-wrapper {
     z-index: 10;
     position: relative;
-    height: 75vh; /* Replace [your-header-height] with actual header height */
+    height: 81vh; /* Replace [your-header-height] with actual header height */
 }
 
 .canvas-container {
@@ -80,6 +80,7 @@ header {
 
 .icon {
     position: absolute;
+    top: 0.5rem;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
