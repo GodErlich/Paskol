@@ -37,8 +37,8 @@ function showMusicText() {
   const plusDiv = document.getElementById('plusDiv');
   const imageDiv = document.getElementById('videoNameDiv');
   if (currentSong && currentSong.isPlaying()) {
-    text = currentlyPlaying;
-    songNameDiv.innerHTML = text;
+    const buttonText = document.getElementById(currentlyPlaying).innerHTML;
+    songNameDiv.innerHTML = buttonText;
     plusDiv.innerHTML = "+";
     text = files[currentImageIndex].name;
     imageDiv.innerHTML = text;
