@@ -5,7 +5,9 @@ philharmonic: null,
 mark: null,
 shuzin: null
 };
-
+let lastWaveform = [];
+let lastVolume = 0;
+let lastFrameCount = 0;
 let files = [
   {
     name: "סרטון הפעם",
@@ -166,13 +168,7 @@ function nextImage() {
       drawPhilharmonicEffect(img, imageX, imageY, newWidth, newHeight, bassEnergy, midEnergy, trebleEnergy);
     }
   
-    // Draw waveform if music is playing
-    if (currentSong && currentSong.isPlaying()) {
       drawWaveform(newHeight);
-    } else {
-      // draw last recorded waveform:
-      
-    }
     
     
     soundVolume = volumeSlider.value();
@@ -181,7 +177,6 @@ function nextImage() {
     }
   }
   
-  // [Your existing Shuzin and Mark effects stay the same]
   
   function drawShuzinEffect(img, imageX, imageY, newWidth, newHeight, bassEnergy, midEnergy, trebleEnergy) {
     let drumEnergy = fft.getEnergy(100, 200);
@@ -401,6 +396,7 @@ function nextImage() {
       currentSong.stop();
       if (currentlyPlaying === type) {
         currentlyPlaying = '';
+        showMusicText();
         return;
       }
     }
@@ -421,15 +417,23 @@ function nextImage() {
     // Get waveform data from p5.FFT
     fft.analyze();
     let waveform = fft.waveform();
-  
-    let spectrum = fft.analyze();
     let volume = 0;
+    let spectrum = fft.analyze();
     for(let i = 0; i < spectrum.length; i++) {
         volume += spectrum[i];
     }
     volume = volume / spectrum.length; // Average volume
     noiseScale = 100 * soundVolume;
-    
+    if (currentSong && currentSong.isPlaying()) {
+      lastWaveform = [...waveform];
+      lastVolume = volume;
+      lastFrameCount = frameCount;
+    } else {
+      waveform = lastWaveform;
+      volume = lastVolume
+      frameCount = lastFrameCount;
+    }
+
     let baseAmplitude = 120;
     // Make amplitude responsive to volume
     let amplitude = baseAmplitude * (volume / 20);  
