@@ -124,10 +124,20 @@ function nextImage() {
     }
   }
 
+  function isFileVideo() {
+    file = files[currentImageIndex];
+    if (file.filePath.includes(".mp4")) {
+        return true;
+    } else {
+        return false;
+    }
+  }
+
   function draw() {
     background(255);
     
     let img = getFileToDisplay();
+  
     let newWidth = width;
     let newHeight = height;
     let imageX = (width - newWidth) / 2;
@@ -139,7 +149,7 @@ function nextImage() {
     let midEnergy = fft.getEnergy("mid");
     let trebleEnergy = fft.getEnergy("treble");
     
-    if (!currentSong || !currentSong.isPlaying()) {
+    if (isFileVideo() || !currentSong || !currentSong.isPlaying()) {
       // show regular video if no music is playing
       
       image(img, imageX, imageY, newWidth, newHeight); // redraws the video frame by frame in p5
@@ -411,7 +421,7 @@ function nextImage() {
     
     beginShape();
     // Start at bottom left corner
-    waveHeight = imageHeight
+    waveHeight = imageHeight - 50
     vertex(0, waveHeight);
     
     // Calculate width of each segment
@@ -420,10 +430,9 @@ function nextImage() {
     // Draw the top of the wave
     for (let i = 0; i < waveform.length; i++) {
       let x = i * sliceWidth;
-      // Adjust the mapping to make the wave more prominent
-      let y = map(waveform[i], 1, -1, waveHeight - 140, waveHeight - 80);
+      let y = map(waveform[i], 1, -1, waveHeight- 40, waveHeight);
       // Add some smoothing using noise
-      y += noise(i * 0.1 + frameCount * 0.05) * 30;
+      y -= noise(i * 0.1 + frameCount * 0.05) * 50;
       vertex(x, y);
     }
     
@@ -440,9 +449,9 @@ function nextImage() {
     for (let i = 0; i < waveform.length; i++) {
       let x = i * sliceWidth;
       // Adjust the mapping to make the wave more prominent, but inverted for top
-      let y = map(waveform[i], -1, 1, 100, 40);
+      let y = map(waveform[i], -1, 1, 0, 0);
       // Add some smoothing using noise (using different offset for variation)
-      y += noise(i * 0.1 + frameCount * 0.05 + 1000) * 30;
+      y += noise(i * 0.1 + frameCount * 0.05) * 50;
       vertex(x, y);
     }
     
