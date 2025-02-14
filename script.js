@@ -6,20 +6,23 @@ mark: null,
 shuzin: null
 };
 
-let files = [{
+let files = [
+  {
+    name: "סרטון הפעם",
+    description: "זה הסרטון הכי הכי",
+    filePath: "videos/1.mp4",
+    real: null
+  },
+  {
     name: "תמונה",
     description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
     filePath: "images/1.jpg",
     real: null
-},{
+},
+{
   name: "תמונה",
   description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
   filePath: "images/paskol.png",
-  real: null
-}, {
-  name: "סרטון הפעם",
-  description: "זה הסרטון הכי הכי",
-  filePath: "videos/1.mp4",
   real: null
 }
 ]
@@ -166,6 +169,9 @@ function nextImage() {
     // Draw waveform if music is playing
     if (currentSong && currentSong.isPlaying()) {
       drawWaveform(newHeight);
+    } else {
+      // draw last recorded waveform:
+      
     }
     
     
@@ -413,7 +419,20 @@ function nextImage() {
   // Add this function to your existing p5.js code
   function drawWaveform(imageHeight) {
     // Get waveform data from p5.FFT
+    fft.analyze();
     let waveform = fft.waveform();
+  
+    let spectrum = fft.analyze();
+    let volume = 0;
+    for(let i = 0; i < spectrum.length; i++) {
+        volume += spectrum[i];
+    }
+    volume = volume / spectrum.length; // Average volume
+    noiseScale = 100 * soundVolume;
+    
+    let baseAmplitude = 120;
+    // Make amplitude responsive to volume
+    let amplitude = baseAmplitude * (volume / 20);  
   
     push();
     fill(255);  // White fill
@@ -432,7 +451,7 @@ function nextImage() {
       let x = i * sliceWidth;
       let y = map(waveform[i], 1, -1, waveHeight, waveHeight);
       // Add some smoothing using noise
-      y -= noise(i * 0.1 + frameCount * 0.05) * 50;
+      y -= noise(i * 0.1 + frameCount * 0.05) * amplitude;
       vertex(x, y);
     }
     
@@ -449,9 +468,9 @@ function nextImage() {
     for (let i = 0; i < waveform.length; i++) {
       let x = i * sliceWidth;
       // Adjust the mapping to make the wave more prominent, but inverted for top
-      let y = map(waveform[i], -1, 1, 0, 0);
+      let y = map(waveform[i], -1, 1, 0 - amplitude * 5, 0 + amplitude * 5);
       // Add some smoothing using noise (using different offset for variation)
-      y += noise(i * 0.1 + frameCount * 0.05) * 50;
+      y += noise(i * 0.1 + frameCount * 0.05);
       vertex(x, y);
     }
     
