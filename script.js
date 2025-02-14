@@ -421,16 +421,16 @@ function nextImage() {
     
     beginShape();
     // Start at bottom left corner
-    waveHeight = imageHeight - 50
+    waveHeight = imageHeight - 70
     vertex(0, waveHeight);
-    
+
     // Calculate width of each segment
     let sliceWidth = width / waveform.length;
-    
+
     // Draw the top of the wave
     for (let i = 0; i < waveform.length; i++) {
       let x = i * sliceWidth;
-      let y = map(waveform[i], 1, -1, waveHeight- 40, waveHeight);
+      let y = map(waveform[i], 1, -1, waveHeight, waveHeight);
       // Add some smoothing using noise
       y -= noise(i * 0.1 + frameCount * 0.05) * 50;
       vertex(x, y);
