@@ -162,11 +162,6 @@ button {
     cursor: pointer;
 }
 
-button:hover {
-    background-color: gray;
-    color: black;
-}
-
 .footer {
     display: flex;
     flex-direction: column;
@@ -220,16 +215,35 @@ button:hover {
     right: 0;
 }
 
+
+.philharmonic:hover {
+    font-family: 'Hadassah', Narkiss Block;
+    font-size: large;
+}
+
+.mark:hover {
+    font-family: 'Mugrabi', Narkiss Block;
+    font-size: large;
+}
+
+.shuzin:hover {
+    font-family: 'Soda FOT', Narkiss Block;
+    font-size: large;
+}
+
 .philharmonic-active {
     font-family: 'Hadassah', Narkiss Block;
+    font-size: large;
 }
 
 .mark-active {
     font-family: 'Mugrabi', Narkiss Block;
+    font-size: large;
 }
 
 .shuzin-active {
     font-family: 'Soda FOT', Narkiss Block;
+    font-size: large;
 }
 
 /* Optional: Add transition for smooth font change */
