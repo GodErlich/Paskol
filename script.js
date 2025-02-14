@@ -449,7 +449,7 @@ function nextImage() {
     
     beginShape();
     // Start at bottom left corner
-    waveHeight = imageHeight - 70
+    waveHeight = imageHeight - 60
     vertex(0, waveHeight);
 
     // Calculate width of each segment
