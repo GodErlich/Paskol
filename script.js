@@ -85,9 +85,13 @@ function updateCircles() {
 
 
 function showImageDescription() {
-    text =  files[currentImageIndex].description;
     const descriptionDiv = document.getElementById('descriptionDiv');
-    descriptionDiv.innerHTML = text;
+    if (descriptionDiv.innerHTML === "") {
+      text =  files[currentImageIndex].description;
+      descriptionDiv.innerHTML = text;
+    } else {
+      descriptionDiv.innerHTML = "";
+    }
 }
 
 function loadVideo(index) {
@@ -141,13 +145,13 @@ function setup() {
 }        
   
 function nextImage() {
-    currentImageIndex = (currentImageIndex - 1) % files.length;
+    currentImageIndex = Math.abs((currentImageIndex - 1 + files.length)) % files.length;
     showMusicText();
     updateCircles();
   }
   
   function previousImage() {
-    currentImageIndex = (currentImageIndex + 1 + files.length) % files.length;
+    currentImageIndex = Math.abs((currentImageIndex + 1)) % files.length;
     showMusicText();
     updateCircles();
   }

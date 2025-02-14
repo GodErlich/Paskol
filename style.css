@@ -112,11 +112,15 @@ header {
 }
 
 .center {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     width: 80%;
     height: 80%;
+    display: flex;
+}
+
+.descriptionIcon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
 }
 
 .overVideo {
