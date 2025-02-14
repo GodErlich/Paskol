@@ -56,6 +56,34 @@ function showMusicText() {
   }
 }
 
+let totalPages = 5; // Set this to your total number of pages
+
+function initializeCircles() {
+    const circlesContainer = document.querySelector('.circles-container');
+    
+    for (let i = 0; i < files.length; i++) {
+        const circleSVG = `
+            <svg class="circle-nav ${i === currentImageIndex ? 'active' : ''}" 
+                 viewBox="0 0 24 24">
+                <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z" />
+            </svg>
+        `;
+        circlesContainer.innerHTML += circleSVG;
+    }
+}
+
+function updateCircles() {
+    const circles = document.querySelectorAll('.circle-nav');
+    circles.forEach((circle, index) => {
+        if (index === currentImageIndex) {
+            circle.classList.add('active');
+        } else {
+            circle.classList.remove('active');
+        }
+    });
+}
+
+
 function showImageDescription() {
     text =  files[currentImageIndex].description;
     const descriptionDiv = document.getElementById('descriptionDiv');
@@ -109,16 +137,19 @@ function setup() {
     fft = new p5.FFT(0.8, 1024);  
 
     volumeSlider = select('#volume');
+    initializeCircles();
 }        
   
 function nextImage() {
-    currentImageIndex = (currentImageIndex + 1) % files.length;
+    currentImageIndex = (currentImageIndex - 1) % files.length;
     showMusicText();
+    updateCircles();
   }
   
   function previousImage() {
-    currentImageIndex = (currentImageIndex - 1 + files.length) % files.length;
+    currentImageIndex = (currentImageIndex + 1 + files.length) % files.length;
     showMusicText();
+    updateCircles();
   }
 
   function getFileToDisplay() {

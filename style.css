@@ -132,6 +132,15 @@ header {
     flex-direction: column;
 }
 
+.menuOverVideo {
+    display: flex;
+    background-color: transparent;
+    flex-direction: row;
+    border: none;
+    justify-content: center;
+    align-items: center;
+}
+
 .description {
     width: 10%;
     margin-top: 3rem;
@@ -193,20 +202,11 @@ button {
 }
 
 .arrow-button {
-    width: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.3);
-    color: white;
     padding: 1rem;
-    font-size: large;
     cursor: pointer;
-    border-radius: 50%;
-    transition: background-color 0.3s;
+    height: 80%;
 }
 
-.arrow-button:hover {
-    background: rgba(255, 255, 255, 0.5);
-}
 
 .special {
     width: 20%;
@@ -249,4 +249,26 @@ button {
 /* Optional: Add transition for smooth font change */
 .buttons button {
     transition: all 0.3s ease;
+}
+
+.circles-container {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.circle-nav {
+    width: 13px;
+    height: 13px;
+}
+
+.circle-nav path {
+    fill: transparent;
+    stroke: white;
+    stroke-width: 2;
+    transition: fill 0.3s ease;
+}
+
+.circle-nav.active path {
+    fill: white;
 }

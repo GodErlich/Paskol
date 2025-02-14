@@ -27,14 +27,18 @@
         <div class="main-container" id="main-container">
             <div class="center">
                 <div class="description" id="descriptionDiv"></div>
-                <div class="special">
-                    <div class="arrow-button" onclick="nextImage()">❮</div>
-                </div>    
             </div>
             <div class="overVideo">
                 <div class="songName" id="songNameDiv"></div>
                 <div class="plus" id="plusDiv"></div>
                 <div class="videoName" id="videoNameDiv"></div>
+            </div>
+            <div class="menuOverVideo">
+                <img  src="svg/leftArrow.svg" class="arrow-button" onClick="nextImage()" />
+                <div class="circles-container">
+                    <!-- Circles will be added here dynamically -->
+                </div>
+                <img  src="svg/rightArrow.svg" class="arrow-button" onclick="previousImage()" />
             </div>
         </div>
         <div class="footer" id="footer">
