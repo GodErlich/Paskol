@@ -13,12 +13,13 @@
     /* Keep your existing header styles */
     position: relative;
     z-index: 2;
+    height: 20vh;
 }
 
 .content-wrapper {
     z-index: 10;
     position: relative;
-    height: 80.9vh; /* Replace [your-header-height] with actual header height */
+    height: 75vh; /* Replace [your-header-height] with actual header height */
 }
 
 .canvas-container {
@@ -122,10 +123,9 @@ header {
 }
 
 .buttons {
-    position: relative;
     display: flex;
     width: 100%;
-    height: 12%;
+    height: 80%;
     flex-direction: row;
     background-color: white;
 }
@@ -138,7 +138,7 @@ button {
     background-color: transparent;
     color: black;
     font-size: large;
-    border-radius: 4px;
+    border-radius: 2px;
     cursor: pointer;
 }
 
@@ -147,18 +147,25 @@ button:hover {
     color: black;
 }
 
+.footer {
+    display: flex;
+    flex-direction: column;
+    height: 8vh;
+    background-color: white;
+    align-items: center;
+}
 
 .volume {
     color: white;
 }
 
 .slider-container {
-    margin: 1rem;
+    top: 0;
+    height: 100%;
 }
 
 .slider-container label {
     display: block;
-    margin-bottom: 0.5rem;
 }
 
 .slider-container input {

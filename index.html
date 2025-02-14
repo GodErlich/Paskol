@@ -29,10 +29,6 @@
                 <div class="description" id="descriptionDiv"></div>
                 <div class="special">
                     <div class="arrow-button" onclick="nextImage()">❮</div>
-                    <div class="slider-container">
-                        <label class="volume" for="volume">Volume</label>
-                        <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
-                    </div>
                 </div>    
             </div>
             <div class="overVideo">
@@ -41,11 +37,16 @@
                 <div class="videoName" id="videoNameDiv"></div>
             </div>
         </div>
-        
-        <div class="buttons">
-            <button onclick="toggleMusic('philharmonic')">הפילהרמונית</button>
-            <button onclick="toggleMusic('mark')">מארק אליהו</button>
-            <button onclick="toggleMusic('shuzin')">שוזין</button>
+        <div class="footer">
+            <div class="slider-container">
+                <label class="volume" for="volume">Volume</label>
+                <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+            </div>
+            <div class="buttons">
+                <button onclick="toggleMusic('philharmonic')">הפילהרמונית</button>
+                <button onclick="toggleMusic('mark')">מארק אליהו</button>
+                <button onclick="toggleMusic('shuzin')">שוזין</button>
+            </div>
         </div>
     </div>
 </div>

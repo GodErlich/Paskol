@@ -1,5 +1,6 @@
 let currentImageIndex = 0;
 let currentSong;
+let clearTextSeconds = 3;
 let songs = {
 philharmonic: null,
 mark: null,
@@ -36,27 +37,34 @@ let currentlyPlaying = '';
 let fft;
 
 function showMusicText() {
-  const descriptionDiv = document.getElementById('songNameDiv');
+  const songNameDiv = document.getElementById('songNameDiv');
   const plusDiv = document.getElementById('plusDiv');
+  const imageDiv = document.getElementById('videoNameDiv');
   if (currentSong && currentSong.isPlaying()) {
     text = currentlyPlaying;
-    descriptionDiv.innerHTML = text;
+    songNameDiv.innerHTML = text;
     plusDiv.innerHTML = "+";
-  
-  }else {
-    descriptionDiv.innerHTML = "";
+    text = files[currentImageIndex].name;
+    imageDiv.innerHTML = text;
+
+    // after 3 seconds clear the text:
+    setTimeout(() => {
+      songNameDiv.innerHTML = "";
+      plusDiv.innerHTML = "";
+      imageDiv.innerHTML = "";
+    }, clearTextSeconds * 1000);
+
+  } else {
+    songNameDiv.innerHTML = "";
     plusDiv.innerHTML = "";
+    imageDiv.innerHTML = "";
   }
 }
 
 function showImageDescription() {
-  text =  files[currentImageIndex].description;
-  const descriptionDiv = document.getElementById('descriptionDiv');
-  descriptionDiv.innerHTML = text;
-  text = files[currentImageIndex].name;
-  const imageDiv = document.getElementById('videoNameDiv');
-  imageDiv.innerHTML = text;
-
+    text =  files[currentImageIndex].description;
+    const descriptionDiv = document.getElementById('descriptionDiv');
+    descriptionDiv.innerHTML = text;
 }
 
 function loadVideo(index) {
@@ -106,18 +114,16 @@ function setup() {
     fft = new p5.FFT(0.8, 1024);  
 
     volumeSlider = select('#volume');
-
-    showImageDescription();
 }        
   
 function nextImage() {
     currentImageIndex = (currentImageIndex + 1) % files.length;
-    showImageDescription();
+    showMusicText();
   }
   
   function previousImage() {
     currentImageIndex = (currentImageIndex - 1 + files.length) % files.length;
-    showImageDescription();
+    showMusicText();
   }
 
   function getFileToDisplay() {
