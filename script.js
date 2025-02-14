@@ -13,19 +13,16 @@ let files = [
     name: "סרטון הפעם",
     description: "זה הסרטון הכי הכי",
     filePath: "videos/1.mp4",
-    real: null
   },
   {
     name: "תמונה",
     description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
     filePath: "images/1.jpg",
-    real: null
 },
 {
   name: "תמונה",
   description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
   filePath: "images/paskol.png",
-  real: null
 }
 ]
 
@@ -52,7 +49,6 @@ function showMusicText() {
       plusDiv.innerHTML = "";
       imageDiv.innerHTML = "";
     }, clearTextSeconds * 1000);
-
   } else {
     songNameDiv.innerHTML = "";
     plusDiv.innerHTML = "";
@@ -403,29 +399,46 @@ function nextImage() {
     
     pop();
   }
-  
-  // [Rest of your existing functions stay the same]
-  
-  function toggleMusic(type) {
-    if (currentSong && currentSong.isPlaying()) {
-      currentSong.stop();
-      if (currentlyPlaying === type) {
-        currentlyPlaying = '';
-        showMusicText();
-        return;
-      }
+
+function changeButtonStyle(type) {
+  document.querySelectorAll('.buttons button').forEach(btn => {
+      btn.classList.remove('philharmonic-active', 'mark-active', 'shuzin-active');
+    });
+  switch(type) {
+    case 'philharmonic':
+        document.getElementById('philharmonic').classList.add('philharmonic-active');
+        break;
+    case 'mark':
+        document.getElementById('mark').classList.add('mark-active');
+        break;
+    case 'shuzin':
+        document.getElementById('shuzin').classList.add('shuzin-active');
+        break;
+  }
+}
+
+
+function toggleMusic(type) {
+  changeButtonStyle(type);
+  if (currentSong && currentSong.isPlaying()) {
+    currentSong.stop();
+    if (currentlyPlaying === type) {
+      currentlyPlaying = '';
+      showMusicText();
+      return;
     }
-    
-    if (songs[type]) {
-      currentSong = songs[type];
-      currentSong.setVolume(soundVolume);
-      currentSong.play();
-      currentlyPlaying = type;
-      fft.setInput(currentSong);
-    }
-    showMusicText();
   }
   
+  if (songs[type]) {
+    currentSong = songs[type];
+    currentSong.setVolume(soundVolume);
+    currentSong.play();
+    currentlyPlaying = type;
+    fft.setInput(currentSong);
+  }
+  showMusicText();
+}
+
   
   let waveformFrame = 0;
   let frozenWaveformFrame = 0;
@@ -468,7 +481,7 @@ function nextImage() {
     beginShape();
     // Start at bottom left corner
     footerHeight = document.getElementById('footer').offsetHeight;
-    waveHeight = window.height - footerHeight
+    waveHeight = window.height - footerHeight - 10
     vertex(0, waveHeight);
 
     // Calculate width of each segment

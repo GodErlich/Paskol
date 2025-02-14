@@ -4,11 +4,30 @@
     box-sizing: border-box;
 }
 
+
+
 @font-face {
-    font-family: 'Narkis Block';
-    src: url('fonts/narkis-block.ttf') format('truetype'),
-  }
-  
+    font-family: 'Soda FOT';
+    src: url('fonts/SodaFOT-Bold.otf') format('truetype'),
+}
+
+@font-face {
+    font-family: 'Mugrabi';
+    src: url('fonts/mugrabi-regular-aaa.otf') format('truetype'),
+}
+
+
+@font-face {
+    font-family: 'Hadassah';
+    src: url('fonts/HadassahFriedlaender-Regular.otf') format('truetype'),
+}
+
+
+@font-face {
+    font-family: 'Narkiss Block';
+    src: url('fonts/NarkissBlock-Regular.otf') format('truetype'),
+}
+
 .header {
     /* Keep your existing header styles */
     position: relative;
@@ -71,7 +90,7 @@ header {
     padding: 1rem;
     margin-right: 1rem;
     cursor: pointer;
-    font-family: 'Narkis Block', sans-serif;
+    font-family: 'Narkiss Block', sans-serif;
     font-style: normal;
     font-weight: 400;
 }
@@ -137,7 +156,8 @@ button {
     border: none;
     background-color: transparent;
     color: black;
-    font-size: large;
+    font-size: medium;
+    font-family: Narkiss Block;
     border-radius: 2px;
     cursor: pointer;
 }
@@ -198,4 +218,21 @@ button:hover {
     display: flex;
     flex-direction: column;
     right: 0;
+}
+
+.philharmonic-active {
+    font-family: 'Hadassah', Narkiss Block;
+}
+
+.mark-active {
+    font-family: 'Mugrabi', Narkiss Block;
+}
+
+.shuzin-active {
+    font-family: 'Soda FOT', Narkiss Block;
+}
+
+/* Optional: Add transition for smooth font change */
+.buttons button {
+    transition: all 0.3s ease;
 }
