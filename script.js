@@ -97,7 +97,7 @@ files.forEach((file, i) => {
 soundFormats('mp3');
 songs["shuzin"] = loadSound("sound/Shuzin.mp3");
 songs["mark"] = loadSound("sound/Mark Eliyahu.mp3");
-songs["philharmonic"] = loadSound("sound/Israel Philharmonic Orchestra.mp3");
+songs["philharmonic"] = loadSound("sound/philharmonic.mp3");
 }
 
 
@@ -148,9 +148,23 @@ function nextImage() {
     background(255);
     
     let img = getFileToDisplay();
-  
-    let newWidth = width;
-    let newHeight = height;
+
+    // Calculate new dimensions to ensure coverage while maintaining aspect ratio
+    let aspectRatio = img.width / img.height;
+    let screenAspectRatio = width / (height - 160); // Accounting for the 160px offset
+    let newWidth, newHeight;
+    
+    if (screenAspectRatio > aspectRatio) {
+        // If screen is wider than image, fit to width
+        newWidth = width;
+        newHeight = width / aspectRatio;
+    } else {
+        // If screen is taller than image, fit to height
+        newHeight = height - 160;
+        newWidth = (height - 160) * aspectRatio;
+    }  
+    // let newWidth = width;
+    // let newHeight = height;
     let imageX = (width - newWidth) / 2;
     let imageY = (height - newHeight - 160) / 2;
       
@@ -455,7 +469,8 @@ function nextImage() {
     
     beginShape();
     // Start at bottom left corner
-    waveHeight = imageHeight - 60
+    footerHeight = document.getElementById('footer').offsetHeight;
+    waveHeight = window.height - footerHeight
     vertex(0, waveHeight);
 
     // Calculate width of each segment
