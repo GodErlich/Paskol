@@ -184,16 +184,13 @@ button {
 }
 
 .volume {
-    color: white;
+    accent-color: black;
 }
 
 .slider-container {
+    padding: 0.5rem;
     top: 0;
     height: 100%;
-}
-
-.slider-container label {
-    display: block;
 }
 
 .slider-container input {
@@ -228,6 +225,10 @@ button {
 .mark:hover {
     font-family: 'Mugrabi', Narkiss Block;
     font-size: large;
+}
+
+.videoName {
+    font-family: 'Narkiss Block', sans-serif;
 }
 
 .shuzin:hover {

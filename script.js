@@ -8,29 +8,53 @@ shuzin: null
 };
 let lastWaveform = [];
 let lastVolume = 0;
-let files = [
-  {
-    name: "סרטון הפעם",
+currentTitle = 0;
+
+let titles = {
+  0: {
+    name: "המסע המופלא",
     description: "זה הסרטון הכי הכי",
-    filePath: "videos/1.mp4",
+    files: [
+      {
+        filePath:"videos/1.mp4"
+      }, 
+      {
+        filePath:"images/1.jpg"
+      }
+    ]
   },
-  {
-    name: "תמונה",
+  1: {
+    name: "מסכנים שכאלה",
     description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
-    filePath: "images/1.jpg",
-},
-{
-  name: "תמונה",
-  description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
-  filePath: "images/paskol.png",
+    files: [
+      {
+        filePath:"images/paskol.png"
+      }, 
+      {
+        filePath:"images/1.jpg"
+      }
+    ]
+  }
 }
-]
 
 let soundVolume = 0.5;
 let canvas;
 let volumeSlider;
 let currentlyPlaying = '';
 let fft;
+
+function fontByMusic() {
+  if (currentSong && currentSong.isPlaying()) {
+    if (currentlyPlaying === 'shuzin') {
+      return "Soda FOT";
+    } else if (currentlyPlaying === 'mark') {
+      return "Mugrabi";
+    } else if (currentlyPlaying === 'philharmonic') {
+      return "Hadassah";
+    }
+  }
+  return "Narkiss Block";
+}
 
 function showMusicText() {
   const songNameDiv = document.getElementById('songNameDiv');
@@ -39,8 +63,9 @@ function showMusicText() {
   if (currentSong && currentSong.isPlaying()) {
     const buttonText = document.getElementById(currentlyPlaying).innerHTML;
     songNameDiv.innerHTML = buttonText;
+    songNameDiv.style.fontFamily = fontByMusic();
     plusDiv.innerHTML = "+";
-    text = files[currentImageIndex].name;
+    text = titles[currentTitle].name;
     imageDiv.innerHTML = text;
 
     // after 3 seconds clear the text:
@@ -56,11 +81,9 @@ function showMusicText() {
   }
 }
 
-let totalPages = 5; // Set this to your total number of pages
-
 function initializeCircles() {
     const circlesContainer = document.querySelector('.circles-container');
-    
+    files = titles[currentTitle].files;
     for (let i = 0; i < files.length; i++) {
         const circleSVG = `
             <svg class="circle-nav ${i === currentImageIndex ? 'active' : ''}" 
@@ -83,18 +106,26 @@ function updateCircles() {
     });
 }
 
+function changeTitle(title) {
+  currentTitle = title;
+  if (!titles[currentTitle]) {
+    currentTitle = 0;
+  }
+  currentImageIndex = 0;
+  showMusicText();
+}
 
 function showImageDescription() {
     const descriptionDiv = document.getElementById('descriptionDiv');
     if (descriptionDiv.innerHTML === "") {
-      text =  files[currentImageIndex].description;
+      text =  titles[currentTitle].description;
       descriptionDiv.innerHTML = text;
     } else {
       descriptionDiv.innerHTML = "";
     }
 }
 
-function loadVideo(index) {
+function loadVideo(files, index) {
     const vid = createVideo(files[index].filePath);
     vid.volume(0);
     vid.hide();
@@ -102,25 +133,26 @@ function loadVideo(index) {
     files[index].real = vid;
 }
 
-function loadSimpleImage(index) {
+function loadSimpleImage(files, index) {
     const img = loadImage(files[index].filePath);
     files[index].real = img;
 }
 
-function loadFile(index) {
+function loadFile(files, index) {
     if (files[index].filePath.includes(".mp4")) {
-        loadVideo(index);
+        loadVideo(files, index);
     } else {
-        loadSimpleImage(index);
+        loadSimpleImage(files,index);
     }
 }
 
 function preload() {
 // get all video files names in the videos folder
-files.forEach((file, i) => {
-    loadFile(i);
+Object.values(titles).forEach((title) => {
+  title.files.forEach((file, i) => {
+      loadFile(title.files, i);
+  });
 });
-
 soundFormats('mp3');
 songs["shuzin"] = loadSound("sound/Shuzin.mp3");
 songs["mark"] = loadSound("sound/Mark Eliyahu.mp3");
@@ -145,18 +177,19 @@ function setup() {
 }        
   
 function nextImage() {
+    files = titles[currentTitle].files;
     currentImageIndex = Math.abs((currentImageIndex - 1 + files.length)) % files.length;
-    showMusicText();
     updateCircles();
   }
   
   function previousImage() {
+    files = titles[currentTitle].files;
     currentImageIndex = Math.abs((currentImageIndex + 1)) % files.length;
-    showMusicText();
     updateCircles();
   }
 
   function getFileToDisplay() {
+    files = titles[currentTitle].files;
     file = files[currentImageIndex];
     if (file.filePath.includes(".mp4")) {
         return file.real;
@@ -166,6 +199,7 @@ function nextImage() {
   }
 
   function isFileVideo() {
+    files = titles[currentTitle].files;
     file = files[currentImageIndex];
     if (file.filePath.includes(".mp4")) {
         return true;
