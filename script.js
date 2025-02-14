@@ -8,7 +8,6 @@ shuzin: null
 };
 let lastWaveform = [];
 let lastVolume = 0;
-let lastFrameCount = 0;
 let files = [
   {
     name: "סרטון הפעם",
@@ -68,15 +67,15 @@ function showImageDescription() {
 }
 
 function loadVideo(index) {
-    let vid = createVideo(files[index].filePath);
-    vid.volume(0); // Mute the video's own audio
-    vid.hide(); // Hide the default HTML video player
-    vid.loop(); // Make the video loop
+    const vid = createVideo(files[index].filePath);
+    vid.volume(0);
+    vid.hide();
+    vid.loop();
     files[index].real = vid;
 }
 
 function loadSimpleImage(index) {
-    let img = loadImage(files[index].filePath);
+    const img = loadImage(files[index].filePath);
     files[index].real = img;
 }
 
@@ -151,7 +150,7 @@ function nextImage() {
 
     // Calculate new dimensions to ensure coverage while maintaining aspect ratio
     let aspectRatio = img.width / img.height;
-    let screenAspectRatio = width / (height - 160); // Accounting for the 160px offset
+    let screenAspectRatio = width / (height); // Accounting for the 160px offset
     let newWidth, newHeight;
     
     if (screenAspectRatio > aspectRatio) {
@@ -160,8 +159,8 @@ function nextImage() {
         newHeight = width / aspectRatio;
     } else {
         // If screen is taller than image, fit to height
-        newHeight = height - 160;
-        newWidth = (height - 160) * aspectRatio;
+        newHeight = height;
+        newWidth = (height) * aspectRatio;
     }  
     // let newWidth = width;
     // let newHeight = height;
@@ -174,13 +173,12 @@ function nextImage() {
     let midEnergy = fft.getEnergy("mid");
     let trebleEnergy = fft.getEnergy("treble");
     
-    if (isFileVideo() || !currentSong || !currentSong.isPlaying()) {
-      // show regular video if no music is playing
-      
-      image(img, imageX, imageY, newWidth, newHeight); // redraws the video frame by frame in p5
-      loadPixels();
-    
-    } else if (currentlyPlaying === 'shuzin') {
+    if (isFileVideo()) {   
+      image(img, imageX, imageY, newWidth, newHeight);
+    } else if ( !currentSong || !currentSong.isPlaying()) { 
+      image(img, imageX, imageY, newWidth, newHeight);
+    }
+    else if (currentlyPlaying === 'shuzin') {
       drawShuzinEffect(img, imageX, imageY, newWidth, newHeight, bassEnergy, midEnergy, trebleEnergy);
     } else if (currentlyPlaying === 'mark') {
       drawMarkEffect(img, imageX, imageY, newWidth, newHeight, bassEnergy, midEnergy, trebleEnergy);
@@ -188,9 +186,7 @@ function nextImage() {
       drawPhilharmonicEffect(img, imageX, imageY, newWidth, newHeight, bassEnergy, midEnergy, trebleEnergy);
     }
   
-      drawWaveform(newHeight);
-    
-    
+    drawWaveform();
     soundVolume = volumeSlider.value();
     if (currentSong) {
       currentSong.setVolume(soundVolume);
@@ -411,7 +407,6 @@ function nextImage() {
   // [Rest of your existing functions stay the same]
   
   function toggleMusic(type) {
-    
     if (currentSong && currentSong.isPlaying()) {
       currentSong.stop();
       if (currentlyPlaying === type) {
@@ -432,8 +427,10 @@ function nextImage() {
   }
   
   
+  let waveformFrame = 0;
+  let frozenWaveformFrame = 0;
   // Add this function to your existing p5.js code
-  function drawWaveform(imageHeight) {
+  function drawWaveform() {
     // Get waveform data from p5.FFT
     fft.analyze();
     let waveform = fft.waveform();
@@ -450,11 +447,12 @@ function nextImage() {
     if (currentSong && currentSong.isPlaying()) {
       lastWaveform = [...waveform];
       lastVolume = volume;
-      lastFrameCount = frameCount;
+      frozenWaveformFrame = waveformFrame;
+      waveformFrame = frameCount; // Use actual frameCount for animation
     } else {
       waveform = lastWaveform;
       volume = lastVolume
-      frameCount = lastFrameCount;
+      waveformFrame = frozenWaveformFrame;
     }
 
     let baseAmplitude = 50;
@@ -481,7 +479,7 @@ function nextImage() {
       let x = i * sliceWidth;
       let y = map(waveform[i], 1, -1, waveHeight, waveHeight);
       // Add some smoothing using noise
-      y -= noise(i * 0.1 + frameCount * 0.05, bass, treble) * amplitude;
+      y -= noise(i * 0.1 + waveformFrame * 0.05, bass, treble) * amplitude;
       vertex(x, y);
     }
     
@@ -500,7 +498,7 @@ function nextImage() {
       // Adjust the mapping to make the wave more prominent, but inverted for top
       let y = map(waveform[i], -1, 1, 0, 0);
       // Add some smoothing using noise (using different offset for variation)
-      y += noise(i * 0.1 + frameCount * 0.05, bass, treble) * amplitude;
+      y += noise(i * 0.1 + waveformFrame * 0.05, bass, treble) * amplitude;
       vertex(x, y);
     }
     
