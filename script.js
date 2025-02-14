@@ -419,6 +419,9 @@ function nextImage() {
     let waveform = fft.waveform();
     let volume = 0;
     let spectrum = fft.analyze();
+    let bass = fft.getEnergy("bass") / 100;
+    let treble = fft.getEnergy("treble")/ 100;
+
     for(let i = 0; i < spectrum.length; i++) {
         volume += spectrum[i];
     }
@@ -434,9 +437,11 @@ function nextImage() {
       frameCount = lastFrameCount;
     }
 
-    let baseAmplitude = 120;
+    let baseAmplitude = 50;
     // Make amplitude responsive to volume
-    let amplitude = baseAmplitude * (volume / 20);  
+    // between 0 to 200% of baseAmplitude
+    totalVol = volume + (soundVolume * 10)
+    let amplitude = baseAmplitude * totalVol / 20;
   
     push();
     fill(255);  // White fill
@@ -455,7 +460,7 @@ function nextImage() {
       let x = i * sliceWidth;
       let y = map(waveform[i], 1, -1, waveHeight, waveHeight);
       // Add some smoothing using noise
-      y -= noise(i * 0.1 + frameCount * 0.05) * amplitude;
+      y -= noise(i * 0.1 + frameCount * 0.05, bass, treble) * amplitude;
       vertex(x, y);
     }
     
@@ -472,9 +477,9 @@ function nextImage() {
     for (let i = 0; i < waveform.length; i++) {
       let x = i * sliceWidth;
       // Adjust the mapping to make the wave more prominent, but inverted for top
-      let y = map(waveform[i], -1, 1, 0 - amplitude * 5, 0 + amplitude * 5);
+      let y = map(waveform[i], -1, 1, 0, 0);
       // Add some smoothing using noise (using different offset for variation)
-      y += noise(i * 0.1 + frameCount * 0.05);
+      y += noise(i * 0.1 + frameCount * 0.05, bass, treble) * amplitude;
       vertex(x, y);
     }
     
