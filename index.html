@@ -10,13 +10,12 @@
 </head>
 
 <body>
-    <header class="header">
+    <header class="header" id="header">
+        <div class="tab">אודות הפסטיבל</div>
         <div class="icon">
             <img src="images/paskol.png" alt="icon" width="210" height="70">
         </div>
-        <div class="tab">אודות הפסטיבל</div>
         <div class="tab">האמנים והמתחמים</div>
-        <div class="tab">לרכישת הכרטיסים</div>
     </header>
     <div class="content-wrapper">
 
@@ -43,14 +42,25 @@
             </div>
         </div>
         <div class="footer" id="footer">
-            <div class="slider-container">
-                <input type="range" class="volume" id="volume" min="0" max="1" step="0.01" value="0.5">
-            </div>
-            <div class="buttons">
-                <button class="philharmonic" id="philharmonic" onclick="toggleMusic('philharmonic')">הפילהרמונית</button>
-                <button class="mark" id="mark" onclick="toggleMusic('mark')">מארק אליהו</button>
-                <button class="shuzin" id="shuzin" onclick="toggleMusic('shuzin')">שוזין</button>
-            </div>
+                <div class="buttons">
+                    <button class="philharmonic" id="philharmonic" onclick="toggleMusic('philharmonic')">הפילהרמונית</button>
+                    <button class="mark" id="mark" onclick="toggleMusic('mark')">מארק אליהו</button>
+                    <button class="shuzin" id="shuzin" onclick="toggleMusic('shuzin')">שוזין</button>
+                </div>
+                <div class="bottom-buttons">
+                    <div class="slider-container">
+                        <input type="range" class="volume" id="volume" min="0" max="1" step="0.01" value="0.5">
+                    </div>
+                    <div class="movie-buttons">
+                        <button class="journey" id="journey" onclick="changeTitle(0)">המסע המופלא</button>
+                        <button class="journey" id="journey" onclick="changeTitle(1)">מלון בודפשט</button>
+                        <button class="journey" id="journey" onclick="changeTitle(2)">צורת המים</button>
+                        <button class="journey" id="journey" onclick="changeTitle(3)">המסע המופלא</button>
+                    </div>
+                    <div class="slider-container">
+                        <input type="range" class="volume" id="volume" min="0" max="1" step="0.01" value="0.5">
+                    </div>
+                </div>
         </div>
     </div>
 </div>

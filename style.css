@@ -32,13 +32,13 @@
     /* Keep your existing header styles */
     position: relative;
     z-index: 2;
-    height: 15vh;
+    height: 14vh;
 }
 
 .content-wrapper {
     z-index: 10;
     position: relative;
-    height: 81vh; /* Replace [your-header-height] with actual header height */
+    height: 77vh; /* Replace [your-header-height] with actual header height */
 }
 
 .canvas-container {
@@ -157,15 +157,23 @@ header {
 
 .buttons {
     display: flex;
-    width: 100%;
-    height: 80%;
+    width: 50%;
+    justify-content: space-around;
+    height: 50%;
+    flex-direction: row;
+    background-color: white;
+}
+
+.movie-buttons {
+    display: flex;
+    width: 50%;
+    height: 100%;
     flex-direction: row;
     background-color: white;
 }
 
 button {
-    width: 33%;
-    padding: 0.5rem;
+    width: 25%;
     margin-bottom: 0.5rem;
     border: none;
     background-color: transparent;
@@ -176,16 +184,47 @@ button {
     cursor: pointer;
 }
 
+.bottom-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    height: 50%;
+}
+
 .footer {
     display: flex;
     flex-direction: column;
-    height: 8vh;
+    height: 18vh;
     background-color: white;
     align-items: center;
 }
 
 .volume {
     accent-color: black;
+}
+
+.volume::-moz-range-track {
+    background: gray;
+    height: 4px;
+    border-radius: 2px;
+}
+
+.volume::-moz-range-progress  {
+    background: black;
+    height: 4px;
+    border-radius: 2px;
+}
+
+.volume::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: black;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none; /* Remove default border */
 }
 
 .slider-container {
@@ -207,14 +246,6 @@ button {
     padding: 1rem;
     cursor: pointer;
     height: 80%;
-}
-
-
-.special {
-    width: 20%;
-    display: flex;
-    flex-direction: column;
-    right: 0;
 }
 
 
