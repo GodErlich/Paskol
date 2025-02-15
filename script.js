@@ -13,7 +13,7 @@ currentTitle = 0;
 let titles = {
   0: {
     name: "המסע המופלא",
-    description: "זה הסרטון הכי הכיזה הסרטון הכי הכי",
+    description: "זה הסרטון הכי הכיזה הסרטון הכיהסרטון הכי הכיזה הסרטון הכי הכי",
     files: [
       {
         filePath:"videos/1.mp4"

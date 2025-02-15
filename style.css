@@ -383,22 +383,27 @@ button {
     padding: 1rem;
     font-family: "Narkiss Block", sans-serif;
     direction: rtl;
+    height: 60%;
 }
 
 .popup-header {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .popup-title {
     font-size: medium;
-    margin-right: 1rem;
+    margin-right: 0;
+    direction: rtl;
+    font-family: "Narkiss Block", sans-serif;
 }
 
 .close-popup {
     background: none;
     border: none;
     cursor: pointer;
+    margin-left: 0;
 }
 
 .popup-body {
