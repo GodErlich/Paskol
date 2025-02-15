@@ -31,7 +31,7 @@
 .content-wrapper {
     z-index: 10;
     position: relative;
-    height: 68vh; /* Replace [your-header-height] with actual header height */
+    height: 70vh;
 }
 
 .canvas-container {
@@ -58,7 +58,7 @@ body {
 
 header {
     z-index: 2;
-    height: 10vh;
+    height: 15vh;
     padding: 0.5rem;
     background-color: white;
     color: black;
@@ -204,7 +204,7 @@ button {
 .footer {
     display: flex;
     flex-direction: column;
-    height: 22vh;
+    height: 15vh;
     background-color: white;
     align-items: center;
 }
