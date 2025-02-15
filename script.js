@@ -545,7 +545,7 @@ function toggleMusic(type) {
     beginShape();
     // Start at bottom left corner
     footerHeight = document.getElementById('footer').offsetHeight;
-    waveHeight = window.innerHeight - footerHeight + 40 
+    waveHeight = window.innerHeight - footerHeight + 105
     vertex(0, waveHeight);
 
     // Calculate width of each segment

@@ -31,7 +31,7 @@
 .content-wrapper {
     z-index: 10;
     position: relative;
-    height: 77vh; /* Replace [your-header-height] with actual header height */
+    height: 68vh; /* Replace [your-header-height] with actual header height */
 }
 
 .canvas-container {
@@ -46,12 +46,6 @@
 .canvas-container canvas {
     width: 100% !important;
     height: 100% !important;
-}
-
-.main-container {
-    position: relative;
-    z-index: 1;
-    width: 100%;
 }
 
 body {
@@ -82,12 +76,7 @@ header {
 }
 
 .icon {
-    /* position: absolute;
-    top: 0.5rem;
-    left: 50%;
-    transform: translateX(-50%); */
     display: flex;
-    /* align-items: center; */
 }
 
 .tab {
@@ -105,8 +94,11 @@ header {
 }
 
 .main-container {
+    position: relative;
+    z-index: 1;
     width: 100%;
-    height: 88%;
+    height: 100%;
+    width: 100%;
     flex: auto;
     display: flex;
     padding: 2rem;
@@ -121,9 +113,8 @@ header {
 }
 
 .overVideo {
-    position: absolute;
-    top: 40%;
-    left: 40%;
+    top: 50%;
+    left: 50%;
     color: white;
     z-index: 1;
     font-size: 30px;
@@ -134,12 +125,14 @@ header {
 }
 
 .menuOverVideo {
+    position: absolute;
     display: flex;
     background-color: transparent;
     flex-direction: row;
     border: none;
     justify-content: center;
     align-items: center;
+    bottom: 1rem;
 }
 
 .description {
@@ -152,7 +145,7 @@ header {
 .buttons {
     display: flex;
     width: 50%;
-    justify-content: space-around;
+    justify-content: center;
     height: 50%;
     flex-direction: row;
     background-color: white;
@@ -167,14 +160,12 @@ header {
 }
 
 button {
-    width: 25%;
-    margin-bottom: 0.5rem;
+    width: 100%;
     border: none;
     background-color: transparent;
     color: black;
     font-size: medium;
     font-family: Narkiss Block;
-    border-radius: 2px;
     cursor: pointer;
 }
 
@@ -249,12 +240,13 @@ button {
 .plus {
     justify-content: center;
     display: flex;
+    font-family: 'Narkiss Block', sans-serif;
 }
 
 .arrow-button {
-    padding: 1rem;
+    padding: 0.5rem;
     cursor: pointer;
-    height: 80%;
+    height: 7vh;
 }
 
 
@@ -270,6 +262,14 @@ button {
 
 .videoName {
     font-family: 'Narkiss Block', sans-serif;
+    justify-content: center;
+    display: flex;
+}
+
+.songName {
+    font-family: 'Narkiss Block', sans-serif;
+    justify-content: center;
+    display: flex;
 }
 
 .shuzin:hover {
@@ -299,13 +299,12 @@ button {
 
 .circles-container {
     display: flex;
-    gap: 10px;
     align-items: center;
 }
 
 .circle-nav {
-    width: 13px;
-    height: 13px;
+    width: 1.5vw;
+    height: 2vh;
 }
 
 .circle-nav path {
