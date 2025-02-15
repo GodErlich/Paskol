@@ -72,7 +72,7 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 53%;
+    width: 43%;
 }
 
 .icon {
@@ -160,12 +160,13 @@ header {
 
 .buttons {
     display: flex;
-    width: 50%;
+    width: 40%;
     justify-content: center;
-    height: 50%;
+    height: 45%;
     flex-direction: row;
     background-color: white;
 }
+
 .buttons button {
     font-size: medium;
 }
@@ -173,14 +174,19 @@ header {
 .movie-buttons button {
     font-size: small;
 }
+
 .movie-buttons {
     display: flex;
-    width: 50%;
+    width: 40%;
     height: 100%;
     flex-direction: row;
     background-color: white;
+}
+
+.movie-buttons button:hover {
     font-size: medium;
 }
+
 
 button {
     width: 100%;
@@ -198,7 +204,7 @@ button {
     justify-content: center;
     align-items: center;
     background-color: white;
-    height: 50%;
+    height: 40%;
 }
 
 .footer {
@@ -322,7 +328,7 @@ button {
 .journey4 {
     text-align: right;
 }
-.journey {
+.journey1 {
     text-align: left;
 }
 
@@ -332,6 +338,10 @@ button {
 }
 
 .buttons button {
+    transition: all 0.3s ease;
+}
+
+.movie-buttons button {
     transition: all 0.3s ease;
 }
 

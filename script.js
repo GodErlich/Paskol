@@ -11,7 +11,7 @@ let lastVolume = 0;
 currentTitle = 0;
 
 let titles = {
-  0: {
+  1: {
     name: "המסע המופלא",
     description: "זה הסרטון הכי הכיזה הסרטון הכיהסרטון הכי הכיזה הסרטון הכי הכי",
     files: [
@@ -23,8 +23,32 @@ let titles = {
       }
     ]
   },
-  1: {
+  0: {
     name: "מסכנים שכאלה",
+    description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
+    files: [
+      {
+        filePath:"images/paskol.png"
+      }, 
+      {
+        filePath:"images/1.jpg"
+      }
+    ]
+  },
+  2: {
+    name: "מלון גרנד בודפשט",
+    description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
+    files: [
+      {
+        filePath:"images/paskol.png"
+      }, 
+      {
+        filePath:"images/1.jpg"
+      }
+    ]
+  },
+  3: {
+    name: "צורת המים",
     description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
     files: [
       {
