@@ -26,10 +26,6 @@
         </div>
         
         <div class="main-container" id="main-container">
-            <div class="center">
-                <img src="svg/leftArrow.svg" class="descriptionIcon" onclick="showImageDescription()" />
-                <div class="description" id="descriptionDiv"></div>
-            </div>
             <div class="overVideo">
                 <div class="songName" id="songNameDiv"></div>
                 <div class="plus" id="plusDiv"></div>
@@ -51,6 +47,7 @@
                 </div>
                 <div class="bottom-buttons">
                     <div class="slider-container">
+                        <img src="svg/volume.svg" class="volumeIcon" height="20" width="20" />
                         <input type="range" class="volume" id="volume" min="0" max="1" step="0.01" value="0.5">
                     </div>
                     <div class="movie-buttons">
@@ -59,9 +56,11 @@
                         <button class="journey" id="journey" onclick="changeTitle(2)">צורת המים</button>
                         <button class="journey" id="journey" onclick="changeTitle(3)">המסע המופלא</button>
                     </div>
-                    <div class="slider-container">
-                        <input type="range" class="volume" id="volume" min="0" max="1" step="0.01" value="0.5">
+                    <div class="description-container" onclick="showImageDescription()" >
+                        <img src="svg/volume.svg" class="descriptionIcon"/>
+                        <div class="description" id="description" >מידע נוסף</div>
                     </div>
+
                 </div>
         </div>
     </div>

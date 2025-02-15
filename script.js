@@ -116,13 +116,8 @@ function changeTitle(title) {
 }
 
 function showImageDescription() {
-    const descriptionDiv = document.getElementById('descriptionDiv');
-    if (descriptionDiv.innerHTML === "") {
-      text =  titles[currentTitle].description;
-      descriptionDiv.innerHTML = text;
-    } else {
-      descriptionDiv.innerHTML = "";
-    }
+    const descriptionDiv = document.getElementById('popup-description');
+    text =  titles[currentTitle].description;
 }
 
 function loadVideo(files, index) {

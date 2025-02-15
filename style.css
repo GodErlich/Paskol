@@ -115,16 +115,9 @@ header {
     align-items: center;
 }
 
-.center {
-    width: 80%;
-    height: 80%;
-    display: flex;
-}
-
 .descriptionIcon {
     width: 20px;
     height: 20px;
-    cursor: pointer;
 }
 
 .overVideo {
@@ -150,11 +143,9 @@ header {
 }
 
 .description {
-    width: 10%;
-    margin-top: 3rem;
-    margin-left: 2rem;
-    color: white;
+    color: black;
     background-color: transparent;
+    font-size: small;
     font-family: "Narkiss Block", sans-serif;
 }
 
@@ -191,7 +182,7 @@ button {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     background-color: white;
     height: 50%;
@@ -205,6 +196,16 @@ button {
     align-items: center;
 }
 
+.description-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    height: 100%;
+    cursor: pointer;
+}
+
 .volume {
     accent-color: black;
 }
@@ -213,12 +214,14 @@ button {
     background: gray;
     height: 4px;
     border-radius: 2px;
+    cursor: pointer;
 }
 
 .volume::-moz-range-progress  {
     background: black;
     height: 4px;
     border-radius: 2px;
+    cursor: pointer;
 }
 
 .volume::-moz-range-thumb {
@@ -231,13 +234,16 @@ button {
 }
 
 .slider-container {
-    padding: 0.5rem;
-    top: 0;
     height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
 }
 
 .slider-container input {
-    width: 100%;
+    width: 50%;
 }
 
 .plus {
