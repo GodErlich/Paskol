@@ -111,8 +111,8 @@ function initializeCircles() {
     for (let i = 0; i < files.length; i++) {
         const circleSVG = `
             <svg class="circle-nav ${i === currentImageIndex ? 'active' : ''}" 
-                 viewBox="0 0 24 24">
-                <path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z" />
+                width="20" height="17" viewBox="0 0 20 17">
+                <circle cx="8.5" cy="8.5" r="6" stroke="white" stroke-width="5" fill="none"/>
             </svg>
         `;
         circlesContainer.innerHTML += circleSVG;

@@ -357,14 +357,11 @@ button {
     height: 1.5vh;
 }
 
-.circle-nav path {
-    fill: transparent;
-    stroke: white;
-    stroke-width: 2;
+.circle-nav circle {
     transition: fill 0.3s ease;
 }
 
-.circle-nav.active path {
+.circle-nav.active circle {
     fill: white;
 }
 
