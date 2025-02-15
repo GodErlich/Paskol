@@ -28,13 +28,6 @@
     src: url('fonts/NarkissBlock-Regular.otf') format('truetype'),
 }
 
-.header {
-    /* Keep your existing header styles */
-    position: relative;
-    z-index: 2;
-    height: 14vh;
-}
-
 .content-wrapper {
     z-index: 10;
     position: relative;
@@ -70,21 +63,31 @@ body {
 }
 
 header {
-    padding: 2rem;
+    z-index: 2;
+    height: 14vh;
+    padding: 0.5rem;
     background-color: white;
     color: black;
     display: flex;
     flex-direction: row;
-    justify-content: right;
+    justify-content: center;
+}
+
+.header-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: end;
+    width: 50%;
 }
 
 .icon {
-    position: absolute;
+    /* position: absolute;
     top: 0.5rem;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%); */
     display: flex;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .tab {
