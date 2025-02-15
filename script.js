@@ -116,10 +116,11 @@ function changeTitle(title) {
 }
 
 function showImageDescription() {
-    const descriptionDiv = document.getElementById('popup-body');
-    text =  titles[currentTitle].description;
+    const popupBody = document.getElementById('popup-body');
+    const popupTitle = document.getElementById('popup-title');
+    popupBody.innerHTML =  titles[currentTitle].description;
+    popupTitle.innerHTML = titles[currentTitle].name;
     showPopup()
-    descriptionDiv.innerHTML = text;
 }
 
 function loadVideo(files, index) {
