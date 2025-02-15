@@ -58,7 +58,7 @@ body {
 
 header {
     z-index: 2;
-    height: 14vh;
+    height: 10vh;
     padding: 0.5rem;
     background-color: white;
     color: black;
@@ -70,27 +70,43 @@ header {
 .header-menu {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    align-items: end;
-    width: 50%;
+    justify-content: space-between;
+    align-items: center;
+    width: 53%;
 }
 
 .icon {
     display: flex;
 }
 
-.tab {
+.tab1 {
     padding: 1rem;
     margin-right: 1rem;
     cursor: pointer;
     font-family: 'Narkiss Block', sans-serif;
     font-style: normal;
-    font-weight: 400;
+    font-size: small;
+    text-align: left;
 }
 
-.tab:hover {
-    background-color: black;
-    color: white;
+.tab1:hover {
+    font-size: medium;
+    transition: all 0.3s ease;
+}
+
+.tab2 {
+    padding: 1rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    font-family: 'Narkiss Block', sans-serif;
+    font-style: normal;
+    font-size: small;
+    text-align: right; 
+}
+
+.tab2:hover {
+    font-size: medium;
+    transition: all 0.3s ease;
 }
 
 .main-container {
@@ -132,7 +148,7 @@ header {
     border: none;
     justify-content: center;
     align-items: center;
-    bottom: 1rem;
+    bottom: 2rem;
 }
 
 .description {
@@ -150,13 +166,20 @@ header {
     flex-direction: row;
     background-color: white;
 }
+.buttons button {
+    font-size: medium;
+}
 
+.movie-buttons button {
+    font-size: small;
+}
 .movie-buttons {
     display: flex;
     width: 50%;
     height: 100%;
     flex-direction: row;
     background-color: white;
+    font-size: medium;
 }
 
 button {
@@ -164,8 +187,7 @@ button {
     border: none;
     background-color: transparent;
     color: black;
-    font-size: medium;
-    font-family: Narkiss Block;
+    font-family: "Narkiss Block", sans-serif;
     cursor: pointer;
 }
 
@@ -182,7 +204,7 @@ button {
 .footer {
     display: flex;
     flex-direction: column;
-    height: 18vh;
+    height: 22vh;
     background-color: white;
     align-items: center;
 }
@@ -195,6 +217,7 @@ button {
     width: 25%;
     height: 100%;
     cursor: pointer;
+    gap: 0.5rem;
 }
 
 .volume {
@@ -230,6 +253,7 @@ button {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    gap: 0.5rem;
     width: 25%;
 }
 
@@ -287,12 +311,26 @@ button {
     font-size: large;
 }
 
+.shuzin {
+    text-align: right;
+}
+
+.philharmonic {
+    text-align: left;
+}
+
+.journey4 {
+    text-align: right;
+}
+.journey {
+    text-align: left;
+}
+
 .shuzin-active {
     font-family: 'Soda FOT', Narkiss Block;
     font-size: large;
 }
 
-/* Optional: Add transition for smooth font change */
 .buttons button {
     transition: all 0.3s ease;
 }
@@ -300,11 +338,13 @@ button {
 .circles-container {
     display: flex;
     align-items: center;
+    padding-right: 1rem;
+    padding-left: 1rem;
 }
 
 .circle-nav {
     width: 1.5vw;
-    height: 2vh;
+    height: 1.5vh;
 }
 
 .circle-nav path {
@@ -316,4 +356,53 @@ button {
 
 .circle-nav.active path {
     fill: white;
+}
+
+
+.popup {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 23vw;
+    height: 60vh;
+    z-index: 1000; /* Make sure it's above other content */
+}
+
+.popup-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('svg/descriptionCanvas.svg');
+    background-repeat: no-repeat;
+}
+
+.popup-content {
+    width: 90%;
+    margin-top: 15vh;
+    padding: 1rem;
+    font-family: "Narkiss Block", sans-serif;
+    direction: rtl;
+}
+
+.popup-header {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.popup-title {
+    font-size: medium;
+    margin-right: 1rem;
+}
+
+.close-popup {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.popup-body {
+    font-family: "Narkiss Block", sans-serif;
+    direction: rtl;
+    font-size: x-small;
 }

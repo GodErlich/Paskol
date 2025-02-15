@@ -13,7 +13,7 @@ currentTitle = 0;
 let titles = {
   0: {
     name: "המסע המופלא",
-    description: "זה הסרטון הכי הכי",
+    description: "זה הסרטון הכי הכיזה הסרטון הכי הכי",
     files: [
       {
         filePath:"videos/1.mp4"
@@ -116,8 +116,10 @@ function changeTitle(title) {
 }
 
 function showImageDescription() {
-    const descriptionDiv = document.getElementById('popup-description');
+    const descriptionDiv = document.getElementById('popup-body');
     text =  titles[currentTitle].description;
+    showPopup()
+    descriptionDiv.innerHTML = text;
 }
 
 function loadVideo(files, index) {
@@ -545,7 +547,7 @@ function toggleMusic(type) {
     beginShape();
     // Start at bottom left corner
     footerHeight = document.getElementById('footer').offsetHeight;
-    waveHeight = window.innerHeight - footerHeight + 105
+    waveHeight = window.innerHeight - footerHeight + 130;
     vertex(0, waveHeight);
 
     // Calculate width of each segment
@@ -588,4 +590,12 @@ function toggleMusic(type) {
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
+}
+
+function showPopup() {
+  document.getElementById('popup').style.display = 'block';
+}
+
+function hidePopup() {
+  document.getElementById('popup').style.display = 'none';
 }
