@@ -403,3 +403,41 @@ button {
     width: 0.9rem;
     height: 0.9rem;
 }
+
+
+.change-popup2 {
+    position: absolute;
+    cursor: pointer;
+    bottom: 5%;
+    left: 30%;
+    font-size: xx-small;
+    font-family: "Narkiss Block", sans-serif;
+    display: flex;
+    flex-direction: row;
+    width: 2vw;
+    display: none;
+}
+
+.change-popup {
+    position: absolute;
+    cursor: pointer;
+    bottom: 5%;
+    left: 30%;
+    font-size: xx-small;
+    font-family: "Narkiss Block", sans-serif;
+    display: flex;
+    flex-direction: row;
+    width: 2vw;
+}
+
+.change-arrow {
+    width: 1rem;
+    height: 1rem;
+}
+
+.change-arrow2 {
+    width: 1rem;
+    height: 1rem;
+    transform: rotate(180deg);
+}
+

@@ -644,21 +644,36 @@ function getPopupBackground() {
   return path;
 }
 
-function changePopupText(){
+function changePopupText(isArtist) {
   let imagePath = "popup/"
-  switch(currentlyPlaying) {
-    case 'shuzin':
-      imagePath += "mizkaka";
-      break;
-    case 'mark':
-      imagePath += "hachan";
-      break;
-    case 'philharmonic':
-      imagePath += "imka";
-      break;
-
+  if (isArtist) {
+    document.getElementById('change-popup').style.display = 'flex';
+    document.getElementById('change-popup2').style.display = 'none';
+    if (currentlyPlaying){
+      imagePath += currentlyPlaying;
+    } else {
+      imagePath += "mark";
+    }
+  } else {
+    document.getElementById('change-popup').style.display = 'none';
+    document.getElementById('change-popup2').style.display = 'flex';
+    switch(currentlyPlaying) {
+      case 'shuzin':
+        imagePath += "mizkaka";
+        break;
+      case 'mark':
+        imagePath += "hachan";
+        break;
+      case 'philharmonic':
+        imagePath += "imka";
+        break;
+      default:
+        imagePath += "hachan";
+    }
   }
-  document.getElementById('popup-background').style.backgroundImage = `url(${imagePath})`;;
+  
+  imagePath += "_pop.png";
+  document.getElementById('popup-background').style.backgroundImage = `url(${imagePath})`;
 }
 
 function changeDescriptionText() {
