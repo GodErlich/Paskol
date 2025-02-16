@@ -40,11 +40,32 @@ let titles = {
     description: "זה הסרטון הכי הכיזה הסרטון הכיהסרטון הכי הכיזה הסרטון הכי הכי",
     files: [
       {
-        filePath:"videos/1.mp4"
+        filePath:"images/spirited/spirited.mp4"
       }, 
       {
-        filePath:"images/1.jpg"
-      }
+        filePath:"images/spirited/spirited (1).jpg"
+      }, 
+      {
+        filePath:"images/spirited/spirited (1).png"
+      }, 
+      {
+        filePath:"images/spirited/spirited (1).webp"
+      }, 
+      {
+        filePath:"images/spirited/spirited (2).jpg"
+      }, 
+      {
+        filePath:"images/spirited/spirited (2).webp"
+      }, 
+      {
+        filePath:"images/spirited/spirited (3).jpg"
+      }, 
+      {
+        filePath:"images/spirited/spirited (3).webp"
+      }, 
+      {
+        filePath:"images/spirited/spirited (4).webp"
+      }, 
     ]
   },
   2: {
@@ -79,11 +100,20 @@ let titles = {
     description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
     files: [
       {
-        filePath:"images/paskol.png"
+        filePath:"images/water/water (1).jpg"
       }, 
       {
-        filePath:"images/1.jpg"
-      }
+        filePath:"images/water/water (1).png"
+      }, 
+      {
+        filePath:"images/water/water (2).jpg"
+      }, 
+      {
+        filePath:"images/water/water (2).png"
+      }, 
+      {
+        filePath:"images/water/water (3).jpg"
+      }, 
     ]
   },
   4: {
@@ -103,11 +133,26 @@ let titles = {
     description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
     files: [
       {
-        filePath:"images/paskol.png"
+        filePath:"images/odot/odot_pic1.png"
       }, 
       {
-        filePath:"images/1.jpg"
-      }
+        filePath:"images/odot/odot_pic2.png"
+      }, 
+      {
+        filePath:"images/odot/odot_pic3.png"
+      }, 
+      {
+        filePath:"images/odot/odot_pic4.png"
+      }, 
+      {
+        filePath:"images/odot/odot_pic5.png"
+      }, 
+      {
+        filePath:"images/odot/odot_pic6.png"
+      }, 
+      {
+        filePath:"images/odot/odot_pic7.png"
+      }, 
     ]
   }
   
@@ -252,7 +297,7 @@ function setup() {
     const w = window.innerWidth;
     const h = window.innerHeight - margin;
     
-    canvas = createCanvas(w, h);
+    canvas = createCanvas(w - 100, h);
     canvas.parent('canvas-container');
 
     fft = new p5.FFT(0.8, 1024);  
@@ -315,7 +360,7 @@ function nextImage() {
     // let newWidth = width;
     // let newHeight = height;
     let imageX = (width - newWidth) / 2;
-    let imageY = (height - newHeight - 160) / 2;
+    let imageY = (height - newHeight ) / 2;
       
     // ניתוח הספקטרום של המוזיקה
     let spectrum = fft.analyze();
