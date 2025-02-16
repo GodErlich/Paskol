@@ -11,18 +11,6 @@ let lastVolume = 0;
 currentTitle = 0;
 
 let titles = {
-  1: {
-    name: "המסע המופלא",
-    description: "זה הסרטון הכי הכיזה הסרטון הכיהסרטון הכי הכיזה הסרטון הכי הכי",
-    files: [
-      {
-        filePath:"videos/1.mp4"
-      }, 
-      {
-        filePath:"images/1.jpg"
-      }
-    ]
-  },
   0: {
     name: "מסכנים שכאלה",
     description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
@@ -32,6 +20,18 @@ let titles = {
       }, 
       {
         filePath:"images/crop2.png"
+      }
+    ]
+  },
+  1: {
+    name: "המסע המופלא",
+    description: "זה הסרטון הכי הכיזה הסרטון הכיהסרטון הכי הכיזה הסרטון הכי הכי",
+    files: [
+      {
+        filePath:"videos/1.mp4"
+      }, 
+      {
+        filePath:"images/1.jpg"
       }
     ]
   },
@@ -58,7 +58,20 @@ let titles = {
         filePath:"images/1.jpg"
       }
     ]
+  },
+  4: {
+    name: "אומנים",
+    description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
+    files: [
+      {
+        filePath:"images/paskol.png"
+      }, 
+      {
+        filePath:"images/1.jpg"
+      }
+    ]
   }
+  
 }
 
 let soundVolume = 0.5;
@@ -137,6 +150,7 @@ function changeTitle(title) {
   }
   currentImageIndex = 0;
   showMusicText();
+  changeDescriptionText();
 }
 
 function loadVideo(files, index) {
@@ -609,7 +623,54 @@ function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 }
 
+function getPopupBackground() {
+  // pop up background decided by combination of the current song and the current title.
+  let path = 'popup/';
+  if (currentTitle === 0) {
+    path += "Poor_Things+";
+  } else if (currentTitle === 1) {
+      path += "Spirited_Away+";
+  } else if (currentTitle === 2) {
+      path += "The_Grand_Budapest_Hotel+";
+  } else if (currentTitle === 3) {
+      path += "The_Shape_of_Water+";
+  } else if (currentTitle === 4) {
+      switch (currentlyPlaying) {
+        case 'shuzin':
+          return path + "mizkaka"
+        case 'mark':
+          return "hachan";
+        case 'philharmonic':
+          return "imka";
+      }
+  }
+  if (currentTitle !== 4){
+    path += currentlyPlaying
+  }
+  if (!currentlyPlaying) {
+    path += "mark";
+  }
+  path += "_pop.png";
+  return path;
+}
+
+function changePopupText(){
+
+}
+
+function changeDescriptionText() {
+  let newText = "לתקציר הסרט ופרטי המופע"
+  if (currentTitle === 4) {
+    newText = "למידע על האמן/ים ועל המתחם"
+  }
+  document.getElementById('description').innerHTML = newText;
+}
+
+
+
 function showPopup() {
+  imagePath = getPopupBackground();
+  document.getElementById('popup-background').style.backgroundImage = `url(${imagePath})`;;
   document.getElementById('popup').style.display = 'block';
   document.getElementById('description-container').style.visibility = 'hidden';
 }

@@ -12,7 +12,7 @@
 <body>
     <header class="header" id="header">
         <div class="header-menu" id="header-menu">
-            <div class="tab1">האמנים<br>והמתחמים</div>
+            <div class="tab1" onclick="changeTitle(4)" >האמנים<br>והמתחמים</div>
             <div class="icon">
                 <img src="images/paskol.png" alt="icon" width="150" height="50">
             </div>
@@ -56,7 +56,7 @@
                         <button class="journey4" id="journey" onclick="changeTitle(0)">מסכנים שכאלה</button>
                     </div>
                     <div class="description-container" id="description-container" onclick="showPopup()" >
-                        <div class="description" id="description" >למידע על האמן/ים ועל המתחם</div>
+                        <div class="description" id="description" >לתקציר הסרט ופרטי המופע</div>
                         <img src="svg/info.svg" class="descriptionIcon"/>
                     </div>
                 </div>
@@ -64,8 +64,9 @@
     </div>
 </div>
 <div class="popup" id="popup">
-    <div class="popup-background" ></div>
+    <div class="popup-background" id="popup-background" ></div>
     <img src="svg/exit.svg" class="close-popup" onclick="hidePopup()" />
+    <img src="svg/descriptionArrow.svg" class="change-arrow" onclick="changePopupText()" />
 </div>
 
     <script src="script.js" > </script>

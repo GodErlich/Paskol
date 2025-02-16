@@ -380,7 +380,7 @@ button {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url('popup/test2.png');
+    /* background-image: url('popup/test2.png'); */
     background-position: right;
     background-size: contain;
     background-repeat: no-repeat;
