@@ -16,11 +16,23 @@ let titles = {
     description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
     files: [
       {
-        filePath:"images/1.jpg"
+        filePath:"images/poor/poor1.png"
       }, 
       {
-        filePath:"images/crop2.png"
-      }
+        filePath:"images/poor/poor2.webp"
+      }, 
+      {
+        filePath:"images/poor/poor3.jpg"
+      }, 
+      {
+        filePath:"images/poor/poor4.jpg"
+      },
+      {
+        filePath:"images/poor/poor5.jpg"
+      }, 
+      {
+        filePath:"images/poor/poor6.webp"
+      },  
     ]
   },
   1: {
@@ -40,11 +52,26 @@ let titles = {
     description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
     files: [
       {
-        filePath:"images/paskol.png"
+        filePath:"images/budapest/buda1.gif"
       }, 
       {
-        filePath:"images/1.jpg"
-      }
+        filePath:"images/budapest/buda2.jpg"
+      }, 
+      {
+        filePath:"images/budapest/buda3.webp"
+      }, 
+      {
+        filePath:"images/budapest/buda4.jpg"
+      }, 
+      {
+        filePath:"images/budapest/buda5.webp"
+      }, 
+      {
+        filePath:"images/budapest/buda6.jpg"
+      }, 
+      {
+        filePath:"images/budapest/buda7.webp"
+      }, 
     ]
   },
   3: {
@@ -371,103 +398,84 @@ function nextImage() {
     push();
     translate(imageX, imageY);
     
-    // קודם נצייר את התמונה המקורית עם שקיפות קלה
+    // First draw the original image with slight transparency
     tint(255, 150);
     image(img, 0, 0, newWidth, newHeight);
     noTint();
     
-    // פרמטרים דינמיים מבוססי מוזיקה
-    let threadCount = map(bassEnergy, 0, 255, 8, 16); // מספר חוטים בכל שורה
-    let weaveAmplitude = map(midEnergy, 0, 255, 2, 6); // עוצמת הגליות של החוטים
-    let weaveFrequency = map(trebleEnergy, 0, 255, 0.1, 0.3); // תדירות הגליות
+    // Load pixels for manipulation
+    loadPixels();
+    img.loadPixels();
     
-    // מקדם התנועה של החוטים
-    let flowOffset = frameCount * 0.02;
+    // Wave parameters - slightly reduced for subtler effect
+    let waveAmplitude = map(bassEnergy, 0, 255, 5, 20);       // Reduced wave height
+    let waveFrequency = map(midEnergy, 0, 255, 0.02, 0.05);   // Wave frequency
+    let waveSpeed = frameCount * 0.05;                         // Wave movement speed
     
-    // חלוקת התמונה לרצועות אנכיות ואופקיות
-    let stripeWidth = newWidth / threadCount;
-    let stripeHeight = newHeight / threadCount;
+    // Parameters based on audio
+    let pixelSize = floor(map(bassEnergy, 0, 255, 3, 8));     // Slightly smaller rhombuses
     
-    // יצירת אפקט האריגה
-    for (let layer = 0; layer < 2; layer++) { // שתי שכבות: שתי וערב
-      for (let i = 0; i < threadCount; i++) {
-        let isHorizontal = layer === 0;
+    // Process image in blocks
+    for (let y = 0; y < newHeight; y += pixelSize) {
+      for (let x = 0; x < newWidth; x += pixelSize) {
+        // Create multiple wave patterns
+        let wave1 = sin(x * waveFrequency + waveSpeed) * waveAmplitude;
+        let wave2 = sin(y * waveFrequency + waveSpeed * 0.5) * (waveAmplitude * 0.5);
+        let wave3 = cos((x + y) * waveFrequency * 0.5 + waveSpeed * 0.7) * (waveAmplitude * 0.3);
         
-        // חישוב מיקום הרצועה
-        let pos = i * (isHorizontal ? stripeHeight : stripeWidth);
+        // Combine waves with reduced intensity
+        let yOffset = (wave1 + wave2 + wave3) * 0.7;
+        let xOffset = (wave2 + wave3) * 0.7;
         
+        // Add high frequency movement (reduced)
+        let highFreqMove = map(trebleEnergy, 0, 255, 0, 10) * sin(frameCount * 0.2);
+        xOffset += highFreqMove;
+        
+        // Get color from original image with better position tracking
+        let sourceX = constrain(x + floor(xOffset/2), 0, img.width - 1);
+        let sourceY = constrain(y + floor(yOffset/2), 0, img.height - 1);
+        let index = (sourceY * img.width + sourceX) * 4;
+        
+        // Get RGB values
+        let r = img.pixels[index];
+        let g = img.pixels[index + 1];
+        let b = img.pixels[index + 2];
+        
+        // Size variation based on waves (reduced variation)
+        let sizeVar = map(sin(x * 0.01 + waveSpeed), -1, 1, 0.9, 1.1);
+        let currentSize = pixelSize * sizeVar;
+        
+        // Higher base opacity for better image visibility
+        let baseAlpha = 220;
+        let waveHeight = abs(yOffset) / waveAmplitude;
+        let alpha = map(waveHeight, 0, 1, baseAlpha, 180);
+        
+        // Draw rhombus-shaped pixel
+        fill(r, g, b, alpha);
+        noStroke();
+        
+        // Draw rhombus with wave movement
         beginShape();
-        noFill();
-        
-        // יצירת החוט
-        for (let j = 0; j <= (isHorizontal ? newWidth : newHeight); j += 5) {
-          let x, y, sourceX, sourceY;
-          
-          if (isHorizontal) {
-            // חוטי שתי (אופקיים)
-            x = j;
-            y = pos + sin(j * weaveFrequency + flowOffset + i) * weaveAmplitude;
-            sourceX = map(x, 0, newWidth, 0, img.width);
-            sourceY = map(pos, 0, newHeight, 0, img.height);
-          } else {
-            // חוטי ערב (אנכיים)
-            x = pos + sin(j * weaveFrequency + flowOffset + i) * weaveAmplitude;
-            y = j;
-            sourceX = map(pos, 0, newWidth, 0, img.width);
-            sourceY = map(y, 0, newHeight, 0, img.height);
-          }
-          
-          // צבע מהתמונה המקורית
-          let col = img.get(sourceX, sourceY);
-          
-          // התאמת צבע לסגנון שטיח
-          let h = hue(col);
-          let s = saturation(col);
-          let b = brightness(col);
-          
-          // הגברת הרוויה והחמימות של הצבעים
-          colorMode(HSB);
-          if (isHorizontal) {
-            // חוטי שתי כהים יותר
-            stroke(h, min(s * 1.5, 100), b * 0.8, 0.7);
-            strokeWeight(stripeHeight * 0.8);
-          } else {
-            // חוטי ערב בהירים יותר
-            stroke(h, min(s * 1.3, 100), b * 1.2, 0.7);
-            strokeWeight(stripeWidth * 0.8);
-          }
-          
-          vertex(x, y);
-        }
-        endShape();
+        // Top point
+        vertex(x + currentSize/2 + xOffset, y + yOffset);
+        // Right point
+        vertex(x + currentSize + xOffset, y + currentSize/2 + yOffset);
+        // Bottom point
+        vertex(x + currentSize/2 + xOffset, y + currentSize + yOffset);
+        // Left point
+        vertex(x + xOffset, y + currentSize/2 + yOffset);
+        endShape(CLOSE);
       }
     }
     
-    // הוספת אפקט טקסטורה
-    for (let x = 0; x < newWidth; x += 20) {
-      for (let y = 0; y < newHeight; y += 20) {
-        let sourceX = map(x, 0, newWidth, 0, img.width);
-        let sourceY = map(y, 0, newHeight, 0, img.height);
-        let col = img.get(sourceX, sourceY);
-        
-        // יצירת נקודות קטנות שמדמות את קשרי האריגה
-        let noiseVal = noise(x * 0.1, y * 0.1, frameCount * 0.02);
-        if (noiseVal > 0.7) {
-          colorMode(RGB);
-          stroke(red(col), green(col), blue(col), 150);
-          strokeWeight(2);
-          point(x + random(-2, 2), y + random(-2, 2));
-        }
-      }
+    // Subtler glow effect
+    if (trebleEnergy > 100) {
+      drawingContext.shadowBlur = map(sin(frameCount * 0.1), -1, 1, 3, 10);
+      drawingContext.shadowColor = color(255, map(trebleEnergy, 100, 255, 10, 30));
     }
-    
-    // הוספת אפקט זוהר עדין
-    drawingContext.shadowBlur = map(bassEnergy, 0, 255, 5, 15);
-    drawingContext.shadowColor = color(255, 100);
     
     pop();
   }
-  
   // הוספת משתנה גלובלי בתחילת הקוד
   let smears = [];  // מערך לשמירת המריחות
   
