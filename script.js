@@ -124,7 +124,8 @@ function initializeCircles() {
     for (let i = 0; i < files.length; i++) {
         const circleSVG = `
             <svg class="circle-nav ${i === currentImageIndex ? 'active' : ''}" 
-                width="20" height="17" viewBox="0 0 20 17">
+                width="20" height="17" viewBox="0 0 20 19">
+                <circle cx="8.5" cy="8.5" r="6" stroke="black" stroke-width="6" fill="none"/>
                 <circle cx="8.5" cy="8.5" r="6" stroke="white" stroke-width="5" fill="none"/>
             </svg>
         `;
