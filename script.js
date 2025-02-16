@@ -16,6 +16,9 @@ let titles = {
     description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
     files: [
       {
+        filePath:"images/poor/poor.mp4"
+      }, 
+      {
         filePath:"images/poor/poor1.png"
       }, 
       {
@@ -73,6 +76,9 @@ let titles = {
     description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
     files: [
       {
+        filePath:"images/budapest/buda.mp4"
+      }, 
+      {
         filePath:"images/budapest/buda1.gif"
       }, 
       {
@@ -100,6 +106,9 @@ let titles = {
     description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
     files: [
       {
+        filePath:"images/water/water.mp4"
+      }, 
+      {
         filePath:"images/water/water (1).jpg"
       }, 
       {
@@ -121,10 +130,31 @@ let titles = {
     description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
     files: [
       {
-        filePath:"images/paskol.png"
+        filePath:"images/mark/mark.mp4"
       }, 
       {
-        filePath:"images/1.jpg"
+        filePath:"images/mark/mark (1).webp"
+      }, 
+      {
+        filePath:"images/shuzin/shuzin (2).jpg"
+      }, 
+      {
+        filePath:"images/phil/phil (2).jpg"
+      }, 
+      {
+        filePath:"images/chan/chan (3).jpg"
+      }, 
+      {
+        filePath:"images/mizkaka/mizkaka (3).jpg"
+      }, 
+      {
+        filePath:"images/ymka/ymka1.png"
+      }, 
+      {
+        filePath:"images/ymka/ymka2.png"
+      }, 
+      {
+        filePath:"images/ymka/ymka3.png"
       }
     ]
   },
@@ -207,6 +237,7 @@ function showMusicText() {
 
 function initializeCircles() {
     const circlesContainer = document.querySelector('.circles-container');
+    circlesContainer.innerHTML = '';
     files = titles[currentTitle].files;
     for (let i = 0; i < files.length; i++) {
         const circleSVG = `
@@ -245,6 +276,7 @@ function changeTitle(title) {
     currentTitle = 0;
   }
   currentImageIndex = 0;
+  initializeCircles();
   changeDescriptionText();
   changeTitleButtonStyle();
   showPopup(true)
@@ -357,8 +389,8 @@ function nextImage() {
         newHeight = height;
         newWidth = (height) * aspectRatio;
     }  
-    // let newWidth = width;
-    // let newHeight = height;
+    newWidth = width;
+    newHeight = height;
     let imageX = (width - newWidth) / 2;
     let imageY = (height - newHeight ) / 2;
       
