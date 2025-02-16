@@ -9,7 +9,7 @@ shuzin: null
 let lastWaveform = [];
 let lastVolume = 0;
 currentTitle = 0;
-
+const margin = 300
 let titles = {
   0: {
     name: "מסכנים שכאלה",
@@ -61,6 +61,18 @@ let titles = {
   },
   4: {
     name: "אומנים",
+    description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
+    files: [
+      {
+        filePath:"images/paskol.png"
+      }, 
+      {
+        filePath:"images/1.jpg"
+      }
+    ]
+  },
+  5: {
+    name: "אודות",
     description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
     files: [
       {
@@ -124,7 +136,7 @@ function initializeCircles() {
     for (let i = 0; i < files.length; i++) {
         const circleSVG = `
             <svg class="circle-nav ${i === currentImageIndex ? 'active' : ''}" 
-                width="20" height="17" viewBox="0 0 20 19">
+                width="20" height="17" viewBox="0 -2 20 20">
                 <circle cx="8.5" cy="8.5" r="6" stroke="black" stroke-width="6" fill="none"/>
                 <circle cx="8.5" cy="8.5" r="6" stroke="white" stroke-width="5" fill="none"/>
             </svg>
@@ -152,6 +164,8 @@ function changeTitle(title) {
   currentImageIndex = 0;
   showMusicText();
   changeDescriptionText();
+  changeTitleButtonStyle();
+  showPopup(true)
 }
 
 function loadVideo(files, index) {
@@ -194,7 +208,7 @@ function setup() {
     frameRate(30);
     const mainContainer = document.getElementById('main-container');
     const w = window.innerWidth;
-    const h = window.innerHeight;
+    const h = window.innerHeight - margin;
     
     canvas = createCanvas(w, h);
     canvas.parent('canvas-container');
@@ -502,22 +516,46 @@ function changeButtonStyle(type) {
   document.querySelectorAll('.buttons button').forEach(btn => {
       btn.classList.remove('philharmonic-active', 'mark-active', 'shuzin-active');
     });
+    document.getElementById('philharmonic').classList.add('philharmonic');
+    document.getElementById('mark').classList.add('mark');
+    document.getElementById('shuzin').classList.add('shuzin');
+
+
   switch(type) {
     case 'philharmonic':
         document.getElementById('philharmonic').classList.add('philharmonic-active');
+        document.getElementById('philharmonic').classList.remove('philharmonic');
         break;
     case 'mark':
         document.getElementById('mark').classList.add('mark-active');
+        document.getElementById('mark').classList.remove('mark');
+
         break;
     case 'shuzin':
         document.getElementById('shuzin').classList.add('shuzin-active');
+        document.getElementById('shuzin').classList.remove('shuzin');
         break;
   }
+}
+
+function changeTitleButtonStyle() {
+    const clickedTitleId = `title${currentTitle}`;
+    const clickedButton = document.getElementById(clickedTitleId);
+    
+    // Reset style of previously active button (if any)
+    const previousActive = document.querySelector('.title-active');
+    if (previousActive) {
+      previousActive.classList.remove('title-active');
+    }
+    
+    // Add active class to current button
+    clickedButton.classList.add('title-active');
 }
 
 
 function toggleMusic(type) {
   changeButtonStyle(type);
+  showPopup(true);
   if (currentSong && currentSong.isPlaying()) {
     currentSong.stop();
     if (currentlyPlaying === type) {
@@ -566,7 +604,7 @@ function toggleMusic(type) {
       waveformFrame = frozenWaveformFrame;
     }
 
-    let baseAmplitude = 50;
+    let baseAmplitude = 40;
     // Make amplitude responsive to volume
     // between 0 to 200% of baseAmplitude
     totalVol = volume + (soundVolume * 10)
@@ -579,7 +617,7 @@ function toggleMusic(type) {
     beginShape();
     // Start at bottom left corner
     footerHeight = document.getElementById('footer').offsetHeight;
-    waveHeight = window.innerHeight;
+    waveHeight = window.innerHeight - margin;
     vertex(0, waveHeight);
 
     // Calculate width of each segment
@@ -619,10 +657,6 @@ function toggleMusic(type) {
     pop();
   
   }
-
-function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
-}
 
 function getPopupBackground() {
   // pop up background decided by combination of the current song and the current title.
@@ -687,7 +721,10 @@ function changeDescriptionText() {
 
 
 
-function showPopup() {
+function showPopup(check) {
+  if (check && document.getElementById('popup').style.display == "none") {
+    return
+  }
   imagePath = getPopupBackground();
   document.getElementById('popup-background').style.backgroundImage = `url(${imagePath})`;;
   document.getElementById('popup').style.display = 'block';

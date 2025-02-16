@@ -12,11 +12,11 @@
 <body>
     <header class="header" id="header">
         <div class="header-menu" id="header-menu">
-            <div class="tab1" onclick="changeTitle(4)" >האמנים<br>והמתחמים</div>
+            <div class="tab1" id="title4" onclick="changeTitle(4)" >האמנים<br>והמתחמים</div>
             <div class="icon">
                 <img src="images/paskol.png" alt="icon" width="150" height="50">
             </div>
-            <div class="tab2">אודות<br>הפסטיבל</div>
+            <div class="tab2" id="title5" onclick="changeTitle(5)">אודות<br>הפסטיבל</div>
         </div>
     </header>
     <div class="content-wrapper" id="content-wrapper">
@@ -25,6 +25,9 @@
         </div>
         
         <div class="main-container" id="main-container">
+            <div class="odot">
+                <img src="images/odot.png" class="odot-image">
+            </div>
             <div class="overVideo">
                 <div class="songName" id="songNameDiv"></div>
                 <div class="plus" id="plusDiv"></div>
@@ -50,10 +53,10 @@
                         <input type="range" class="volume" id="volume" min="0" max="1" step="0.01" value="0.5">
                     </div>
                     <div class="movie-buttons">
-                        <button class="journey1" id="journey" onclick="changeTitle(3)">צורת המים</button>
-                        <button class="journey2" id="journey" onclick="changeTitle(2)">מלון גרנד בודפשט</button>
-                        <button class="journey3" id="journey" onclick="changeTitle(1)">המסע המופלא</button>
-                        <button class="journey4" id="journey" onclick="changeTitle(0)">מסכנים שכאלה</button>
+                        <button class="journey1" id="title3" onclick="changeTitle(3)">צורת המים</button>
+                        <button class="journey2" id="title2" onclick="changeTitle(2)">מלון גרנד בודפשט</button>
+                        <button class="journey3" id="title1" onclick="changeTitle(1)">המסע המופלא</button>
+                        <button class="journey4" id="title0" onclick="changeTitle(0)">מסכנים שכאלה</button>
                     </div>
                     <div class="description-container" id="description-container" onclick="showPopup()" >
                         <div class="description" id="description" >לתקציר הסרט ופרטי המופע</div>
@@ -63,7 +66,7 @@
         </div>
     </div>
 </div>
-<div class="popup" id="popup">
+<div class="popup" id="popup" style="display: none;">
     <div class="popup-background" id="popup-background" ></div>
     <img src="svg/exit.svg" class="close-popup" onclick="hidePopup()" />
     <div class="change-popup" id="change-popup" onclick="changePopupText(0)">
