@@ -55,7 +55,7 @@
                         <button class="journey3" id="journey" onclick="changeTitle(1)">המסע המופלא</button>
                         <button class="journey4" id="journey" onclick="changeTitle(0)">מסכנים שכאלה</button>
                     </div>
-                    <div class="description-container" onclick="showImageDescription()" >
+                    <div class="description-container" id="description-container" onclick="showPopup()" >
                         <div class="description" id="description" >למידע על האמן/ים ועל המתחם</div>
                         <img src="svg/info.svg" class="descriptionIcon"/>
                     </div>
@@ -64,17 +64,8 @@
     </div>
 </div>
 <div class="popup" id="popup">
-    <div class="popup-background">
-        <div class="popup-content">
-            <div class="popup-header">
-                <div class="popup-title" id="popup-title"></div>
-                <img src="svg/exit.svg" class="close-popup" onclick="hidePopup()" />
-            </div>
-            <div class="popup-body" id="popup-body">
-                <!-- Your popup content goes here -->
-            </div>
-        </div>
-    </div>
+    <div class="popup-background" ></div>
+    <img src="svg/exit.svg" class="close-popup" onclick="hidePopup()" />
 </div>
 
     <script src="script.js" > </script>

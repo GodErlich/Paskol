@@ -380,42 +380,26 @@ button {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: url('svg/descriptionCanvas.svg');
+    background-image: url('popup/test2.png');
+    background-position: right;
+    background-size: contain;
     background-repeat: no-repeat;
 }
 
 .popup-content {
-    width: 90%;
-    margin-top: 15vh;
+    width: 100%;
+    height: 100%;
+    margin-top: 5vh;
     padding: 1rem;
     font-family: "Narkiss Block", sans-serif;
     direction: rtl;
-    height: 60%;
-}
-
-.popup-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.popup-title {
-    font-size: medium;
-    margin-right: 0;
-    direction: rtl;
-    font-family: "Narkiss Block", sans-serif;
 }
 
 .close-popup {
-    background: none;
-    border: none;
+    position: absolute;
     cursor: pointer;
-    margin-left: 0;
-}
-
-.popup-body {
-    font-family: "Narkiss Block", sans-serif;
-    direction: rtl;
-    font-size: x-small;
-    padding-top: 1rem;
+    left: 30%;
+    top: 20%;
+    width: 0.9rem;
+    height: 0.9rem;
 }

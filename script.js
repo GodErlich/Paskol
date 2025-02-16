@@ -28,10 +28,10 @@ let titles = {
     description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
     files: [
       {
-        filePath:"images/paskol.png"
+        filePath:"images/1.jpg"
       }, 
       {
-        filePath:"images/1.jpg"
+        filePath:"images/crop2.png"
       }
     ]
   },
@@ -137,14 +137,6 @@ function changeTitle(title) {
   }
   currentImageIndex = 0;
   showMusicText();
-}
-
-function showImageDescription() {
-    const popupBody = document.getElementById('popup-body');
-    const popupTitle = document.getElementById('popup-title');
-    popupBody.innerHTML =  titles[currentTitle].description;
-    popupTitle.innerHTML = titles[currentTitle].name;
-    showPopup()
 }
 
 function loadVideo(files, index) {
@@ -619,8 +611,10 @@ function windowResized() {
 
 function showPopup() {
   document.getElementById('popup').style.display = 'block';
+  document.getElementById('description-container').style.visibility = 'hidden';
 }
 
 function hidePopup() {
   document.getElementById('popup').style.display = 'none';
+  document.getElementById('description-container').style.visibility = 'visible';
 }
