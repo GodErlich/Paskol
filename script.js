@@ -634,28 +634,31 @@ function getPopupBackground() {
       path += "The_Grand_Budapest_Hotel+";
   } else if (currentTitle === 3) {
       path += "The_Shape_of_Water+";
-  } else if (currentTitle === 4) {
-      switch (currentlyPlaying) {
-        case 'shuzin':
-          return path + "mizkaka"
-        case 'mark':
-          return "hachan";
-        case 'philharmonic':
-          return "imka";
-      }
   }
-  if (currentTitle !== 4){
-    path += currentlyPlaying
-  }
+
   if (!currentlyPlaying) {
     path += "mark";
   }
+  path += currentlyPlaying
   path += "_pop.png";
   return path;
 }
 
 function changePopupText(){
+  let imagePath = "popup/"
+  switch(currentlyPlaying) {
+    case 'shuzin':
+      imagePath += "mizkaka";
+      break;
+    case 'mark':
+      imagePath += "hachan";
+      break;
+    case 'philharmonic':
+      imagePath += "imka";
+      break;
 
+  }
+  document.getElementById('popup-background').style.backgroundImage = `url(${imagePath})`;;
 }
 
 function changeDescriptionText() {
