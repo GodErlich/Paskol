@@ -691,6 +691,13 @@ function showPopup() {
   document.getElementById('popup-background').style.backgroundImage = `url(${imagePath})`;;
   document.getElementById('popup').style.display = 'block';
   document.getElementById('description-container').style.visibility = 'hidden';
+
+  if (currentTitle === 4) {
+    document.getElementById('change-popup').style.display = 'flex';
+  } else {
+    document.getElementById('change-popup').style.display = 'none';
+    document.getElementById('change-popup2').style.display = 'none';
+  }
 }
 
 function hidePopup() {
