@@ -9,7 +9,7 @@ shuzin: null
 let lastWaveform = [];
 let lastVolume = 0;
 currentTitle = 0;
-const margin = 300
+const margin = 200
 let titles = {
   0: {
     name: "מסכנים שכאלה",
@@ -27,9 +27,6 @@ let titles = {
       {
         filePath:"images/poor/poor3.jpg"
       }, 
-      {
-        filePath:"images/poor/poor4.jpg"
-      },
       {
         filePath:"images/poor/poor5.jpg"
       }, 
@@ -65,9 +62,6 @@ let titles = {
       }, 
       {
         filePath:"images/spirited/spirited (3).webp"
-      }, 
-      {
-        filePath:"images/spirited/spirited (4).webp"
       }, 
     ]
   },
@@ -219,8 +213,8 @@ function showMusicText() {
     songNameDiv.innerHTML = buttonText;
     songNameDiv.style.fontFamily = fontByMusic();
     plusDiv.innerHTML = "+";
-    text = titles[currentTitle].name;
-    imageDiv.innerHTML = text;
+    const newText = titles[currentTitle].name;
+    imageDiv.innerHTML = newText;
 
     // after 3 seconds clear the text:
     setTimeout(() => {
@@ -263,7 +257,7 @@ function updateCircles() {
 }
 
 function showOdot() {
-  document.getElementById('odot').style.display = 'block';
+  document.getElementById('odot').style.display = 'flex';
 }
 
 function hideOdot() {
@@ -329,7 +323,7 @@ function setup() {
     const w = window.innerWidth;
     const h = window.innerHeight - margin;
     
-    canvas = createCanvas(w - 100, h);
+    canvas = createCanvas(w, h);
     canvas.parent('canvas-container');
 
     fft = new p5.FFT(0.8, 1024);  
