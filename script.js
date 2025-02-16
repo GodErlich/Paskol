@@ -106,6 +106,9 @@ function fontByMusic() {
 }
 
 function showMusicText() {
+  if (currentTitle === 5) {
+    return;
+  }
   const songNameDiv = document.getElementById('songNameDiv');
   const plusDiv = document.getElementById('plusDiv');
   const imageDiv = document.getElementById('videoNameDiv');
@@ -156,16 +159,28 @@ function updateCircles() {
     });
 }
 
+function showOdot() {
+  document.getElementById('odot').style.display = 'block';
+}
+
+function hideOdot() {
+  document.getElementById('odot').style.display = 'none';
+}
+
 function changeTitle(title) {
   currentTitle = title;
   if (!titles[currentTitle]) {
     currentTitle = 0;
   }
   currentImageIndex = 0;
-  showMusicText();
   changeDescriptionText();
   changeTitleButtonStyle();
   showPopup(true)
+  if (currentTitle === 5) {
+    showOdot();
+  } else {
+    hideOdot();
+  }
 }
 
 function loadVideo(files, index) {
