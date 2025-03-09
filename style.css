@@ -459,8 +459,6 @@ button {
 
 .odot-body {
     z-index: 10;
-    height: 50%;
     max-width: 100%;
     max-height: 100%;
-    
 }
