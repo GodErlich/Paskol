@@ -16,9 +16,6 @@ let titles = {
     description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
     files: [
       {
-        filePath:"images/poor/poor.mp4"
-      }, 
-      {
         filePath:"images/poor/poor1.png"
       }, 
       {
@@ -39,9 +36,6 @@ let titles = {
     name: "המסע המופלא",
     description: "זה הסרטון הכי הכיזה הסרטון הכיהסרטון הכי הכיזה הסרטון הכי הכי",
     files: [
-      {
-        filePath:"images/spirited/spirited.mp4"
-      }, 
       {
         filePath:"images/spirited/spirited(1).jpg"
       }, 
@@ -70,9 +64,6 @@ let titles = {
     description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
     files: [
       {
-        filePath:"images/budapest/buda.mp4"
-      }, 
-      {
         filePath:"images/budapest/buda1.gif"
       }, 
       {
@@ -100,9 +91,6 @@ let titles = {
     description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
     files: [
       {
-        filePath:"images/water/water.mp4"
-      }, 
-      {
         filePath:"images/water/water(1).jpg"
       }, 
       {
@@ -123,9 +111,6 @@ let titles = {
     name: "אומנים",
     description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
     files: [
-      {
-        filePath:"images/mark/mark.mp4"
-      }, 
       {
         filePath:"images/mark/mark(1).webp"
       }, 
