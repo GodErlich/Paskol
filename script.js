@@ -43,25 +43,25 @@ let titles = {
         filePath:"images/spirited/spirited.mp4"
       }, 
       {
-        filePath:"images/spirited/spirited (1).jpg"
+        filePath:"images/spirited/spirited(1).jpg"
       }, 
       {
-        filePath:"images/spirited/spirited (1).png"
+        filePath:"images/spirited/spirited(1).png"
       }, 
       {
-        filePath:"images/spirited/spirited (1).webp"
+        filePath:"images/spirited/spirited(1).webp"
       }, 
       {
-        filePath:"images/spirited/spirited (2).jpg"
+        filePath:"images/spirited/spirited(2).jpg"
       }, 
       {
-        filePath:"images/spirited/spirited (2).webp"
+        filePath:"images/spirited/spirited(2).webp"
       }, 
       {
-        filePath:"images/spirited/spirited (3).jpg"
+        filePath:"images/spirited/spirited(3).jpg"
       }, 
       {
-        filePath:"images/spirited/spirited (3).webp"
+        filePath:"images/spirited/spirited(3).webp"
       }, 
     ]
   },
@@ -103,19 +103,19 @@ let titles = {
         filePath:"images/water/water.mp4"
       }, 
       {
-        filePath:"images/water/water (1).jpg"
+        filePath:"images/water/water(1).jpg"
       }, 
       {
-        filePath:"images/water/water (1).png"
+        filePath:"images/water/water(1).png"
       }, 
       {
-        filePath:"images/water/water (2).jpg"
+        filePath:"images/water/water(2).jpg"
       }, 
       {
-        filePath:"images/water/water (2).png"
+        filePath:"images/water/water(2).png"
       }, 
       {
-        filePath:"images/water/water (3).jpg"
+        filePath:"images/water/water(3).jpg"
       }, 
     ]
   },
@@ -127,19 +127,19 @@ let titles = {
         filePath:"images/mark/mark.mp4"
       }, 
       {
-        filePath:"images/mark/mark (1).webp"
+        filePath:"images/mark/mark(1).webp"
       }, 
       {
-        filePath:"images/shuzin/shuzin (2).jpg"
+        filePath:"images/shuzin/shuzin(2).jpg"
       }, 
       {
-        filePath:"images/phil/phil (2).jpg"
+        filePath:"images/phil/phil(2).jpg"
       }, 
       {
-        filePath:"images/chan/chan (3).jpg"
+        filePath:"images/chan/chan(3).jpg"
       }, 
       {
-        filePath:"images/mizkaka/mizkaka (3).jpg"
+        filePath:"images/mizkaka/mizkaka(3).jpg"
       }, 
       {
         filePath:"images/ymka/ymka1.png"
@@ -319,7 +319,6 @@ songs["philharmonic"] = loadSound("sound/philharmonic.mp3");
 function setup() {
     // Create canvas that fills the container
     frameRate(30);
-    const mainContainer = document.getElementById('main-container');
     const w = window.innerWidth;
     const h = window.innerHeight - margin;
     
