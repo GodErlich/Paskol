@@ -16,6 +16,9 @@ let titles = {
     description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
     files: [
       {
+        filePath:"images/poor/poor.mp4"
+      },
+      {
         filePath:"images/poor/poor1.png"
       }, 
       {
@@ -64,6 +67,9 @@ let titles = {
     description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
     files: [
       {
+        filePath:"images/budapest/buda.mp4"
+      },
+      {
         filePath:"images/budapest/buda1.gif"
       }, 
       {
@@ -90,6 +96,9 @@ let titles = {
     name: "צורת המים",
     description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
     files: [
+      {
+        filePath:"images/water/water.mp4"
+      },
       {
         filePath:"images/water/water(1).jpg"
       }, 
