@@ -40,6 +40,9 @@ let titles = {
     description: "זה הסרטון הכי הכיזה הסרטון הכיהסרטון הכי הכיזה הסרטון הכי הכי",
     files: [
       {
+        filePath:"images/spirited/spirited.mp4"
+      },
+      {
         filePath:"images/spirited/spirited(1).jpg"
       }, 
       {
@@ -120,6 +123,9 @@ let titles = {
     name: "אומנים",
     description: "תמונה ראשונה ובה יש המון המון המון טקסטטטט",
     files: [
+      {
+        filePath:"images/mark/mark.mp4"
+      },
       {
         filePath:"images/mark/mark(1).webp"
       }, 
